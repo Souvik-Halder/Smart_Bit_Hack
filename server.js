@@ -1,7 +1,20 @@
 const express=require('express');
 const app=express();
 const PORT=process.env.PORT||8000;
+const mongoose=require('mongoose');
 const session=require('express-session');
+DB_URI="mongodb+srv://SouvikHalder:souvikhalder@cluster0.a3bkc.mongodb.net/collagehackathon?retryWrites=true&w=majority";
+
+
+//database connection
+mongoose.connect(DB_URI,{useNewUrlParser:true})
+.then(()=>{
+    console.log("Mongodb connected");
+})
+.catch((err)=>{
+    console.log(err);
+})
+
 
 //middlewares
 app.use(express.urlencoded({extended:false}));
