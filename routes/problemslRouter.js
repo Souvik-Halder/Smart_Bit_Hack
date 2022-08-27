@@ -30,7 +30,9 @@ router.get('/', async (req, res) => {
 });
 
 // GET one problem statement
-router.get('/:id', getProblem, async (req, res) => {});
+router.get('/:id', getProblem, async (req, res) => {
+  res.json(res.problem);
+});
 
 // POST one problem statement
 router.post('/', async (req, res) => {
@@ -49,9 +51,29 @@ router.post('/', async (req, res) => {
 });
 
 // UPDATE one problem statement
-router.patch('/:id', async (req, res) => {});
+router.patch('/:id', getProblem, async (req, res) => {
+  const currentCount = res.problem.submitCount;
+  res.problem.submitCount = currentCount + 1;
+
+  try {
+    const updatedProblem = await res.problem.save();
+    res.json(updatedProblem);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
 
 // DELETE one problem statement
-router.delete('/:id', async (req, res) => {});
+router.delete('/:id', getProblem, async (req, res) => {
+  try {
+    const problemId = res.problem._id;
+    await res.problem.remove();
+    res.json({
+      message: `Delete success for problem statement with id ${problemId}`,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
 module.exports = router;
