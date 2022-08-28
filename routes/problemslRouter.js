@@ -29,13 +29,18 @@ router.get('/', async (req, res) => {
   }
 });
 
+// GET form to add new problem
+router.get('/add', (req, res) => {
+  res.render('addProblemForm', { title: 'Add New Problem' });
+});
+
 // GET one problem statement
 router.get('/:id', getProblem, async (req, res) => {
   res.json(res.problem);
 });
 
 // POST one problem statement
-router.post('/', async (req, res) => {
+router.post('/add', async (req, res) => {
   const problem = new ProblemStatement({
     title: req.body.title,
     description: req.body.description,
