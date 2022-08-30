@@ -1,5 +1,9 @@
 const mongoose=require('mongoose');
 const teamsSchema=mongoose.Schema({
+    teamid:{
+     type:Number,
+     require:true
+    },
     teamname:{
         type:String,
         require:true
@@ -19,6 +23,10 @@ const teamsSchema=mongoose.Schema({
     whatsapp:{
       type:String,
       require:true  
+    },
+    institution:{
+        type:String,
+        require:true
     },
     created:{
         type:Date,
