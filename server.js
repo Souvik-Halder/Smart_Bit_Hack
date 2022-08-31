@@ -1,12 +1,16 @@
-require('dotenv').config();
+
 
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 8000;
 const mongoose = require('mongoose');
 const session = require('express-session');
-DB_URI =
-  'mongodb+srv://SouvikHalder:souvikhalder@cluster0.a3bkc.mongodb.net/collagehackathon?retryWrites=true&w=majority';
+
+
+DB_URI="mongodb+srv://SouvikHalder:souvikhalder@cluster0.a3bkc.mongodb.net/collagehackathon?retryWrites=true&w=majority";
+
+
+app.use(express.static('uploads'))
 
 //database connection
 mongoose
@@ -16,7 +20,8 @@ mongoose
   })
   .catch(err => {
     console.log(err);
-  });
+
+});
 
 //middlewares
 app.use(express.urlencoded({ extended: false }));
@@ -34,13 +39,22 @@ app.use((req, res, next) => {
   next();
 });
 
+
 //set template engine
+
 app.set('view engine', 'ejs');
 
+
 //routes
-app.use('/', require('./routes/user'));
+app.use('/', require('./routes/team'));
 app.use('/problem-statements', require('./routes/problemslRouter'));
 
-app.listen(PORT, err => {
-  console.log(`server is running at the port ${PORT}`);
-});
+
+
+
+
+
+
+app.listen(PORT,(err)=>{
+    console.log(`server running at ${PORT}`)
+})
