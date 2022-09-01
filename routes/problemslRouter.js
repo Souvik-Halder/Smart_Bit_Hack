@@ -1,79 +1,22 @@
 const express = require('express');
 const router = express.Router();
 
-const ProblemStatement = require('../models/ProblemStatements');
+const getProblem = require('../middlewares/fetchProblem');
 
-// Middleware to get a single problem statement
-const getProblem = async (req, res, next) => {
-  try {
-    var problem = await ProblemStatement.findById(req.params.id);
-    if (problem === null)
-      return res
-        .status(404)
-        .json({ message: 'Can not find problem statement.' });
-  } catch (error) {
-    return res.status(500).json({ message: error.message });
-  }
+const {
+  getProblems,
+  getNewProblemForm,
+  getOneProblem,
+  addProblem,
+  updateProblem,
+  deleteProblem,
+} = require('../controllers/problemsController');
 
-  res.problem = problem;
-  next();
-};
-
-// GET all problem statements
-router.get('/', async (req, res) => {
-  try {
-    const statements = await ProblemStatement.find();
-    res.json({ statements });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
-
-// GET one problem statement
-router.get('/:id', getProblem, async (req, res) => {
-  res.json(res.problem);
-});
-
-// POST one problem statement
-router.post('/', async (req, res) => {
-  const problem = new ProblemStatement({
-    title: req.body.title,
-    description: req.body.description,
-    theme: req.body.theme,
-  });
-
-  try {
-    const newProblem = await problem.save();
-    res.status(201).json(newProblem);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-});
-
-// UPDATE one problem statement
-router.patch('/:id', getProblem, async (req, res) => {
-  const currentCount = res.problem.submitCount;
-  res.problem.submitCount = currentCount + 1;
-
-  try {
-    const updatedProblem = await res.problem.save();
-    res.json(updatedProblem);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-});
-
-// DELETE one problem statement
-router.delete('/:id', getProblem, async (req, res) => {
-  try {
-    const problemId = res.problem._id;
-    await res.problem.remove();
-    res.json({
-      message: `Delete success for problem statement with id ${problemId}`,
-    });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+router.get('/', getProblems);
+router.get('/add', getNewProblemForm);
+router.get('/:id', getProblem, getOneProblem);
+router.post('/add', addProblem);
+router.patch('/:id', getProblem, updateProblem);
+router.delete('/:id', getProblem, deleteProblem);
 
 module.exports = router;
