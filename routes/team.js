@@ -125,4 +125,46 @@ router.get('/add_problem_statement/:id',(req,res)=>{
     res.render('add_problem_statement',{id});
 })
 
+
+//route to get the team members
+router.get('/get_team_member/:id',(req,res)=>{
+    const id=req.params.id;
+
+    TeamMember.find({teamId:id},(err,teammember)=>{
+        if(err){
+            res.redirect('/');
+        }
+        else{
+            if(teammember == null){
+                res.json({msg:"plase provide correct credentials"});
+            }
+            else{
+                const success= "true";
+                res.json({teammember,success:"true"})
+            }
+        }
+    })
+   
+})
+
+//route to get the problem statements
+router.get('/get_problem_statement/:id',(req,res)=>{
+    const id=req.params.id;
+
+    PSsubmission.find({teamId:id},(err,problemstatements)=>{
+        if(err){
+            res.redirect('/');
+        }
+        else{
+            if(problemstatements == null){
+                res.json({msg:"plase provide correct credentials"});
+            }
+            else{
+                const success= "true";
+                res.json({problemstatements,success:"true"})
+            }
+        }
+    })
+   
+})
 module.exports=router;
