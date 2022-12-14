@@ -219,8 +219,8 @@ router.get("/aboutus", (req, res) => {
 
 
 //Dashboard code is here
-router.get('/dashboard',auth,(req,res)=>{
-  res.render('dashboard')
+router.get('/dashboard', (req, res) => {
+    res.render('dashboard')
 })
 
 module.exports = router;
