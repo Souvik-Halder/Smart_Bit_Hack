@@ -1,4 +1,4 @@
-<%- include('layouts/header')  %>
+<%- include('layouts/header') %>
 
     <body>
         <!-- Navigation bar -->
@@ -9,82 +9,82 @@
                     <div class="flex items-center justify-between">
 
                         <button class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 rounded-md flex w-full sm:w-auto items-center sm:items-stretch justify-end sm:justify-start">
-                        <div class="flex items-center">
-                            <img src="https://www.sih.gov.in/img1/SIH2022-white-logo.png" class="h-12" alt="logo" />
+                            <div class="flex items-center">
+                                <img src="https://www.sih.gov.in/img1/SIH2022-white-logo.png" class="h-12" alt="logo" />
 
-                        </div>
-                    </button>
+                            </div>
+                        </button>
                         <div class="flex">
                             <div class="hidden md:mr-3 xl:flex">
                                 <a href="javascript: void(0)" class="focus:text-hovercolor font-semibold border-b-2 border-transparent focus:border-none flex px-5 items-center py-6 text-md leading-5 text-white hover:text-hovercolor focus:outline-none uppercase transform transition duration-200">
-                                Home
-                            </a>
+                                    Home
+                                </a>
                                 <a href="javascript: void(0)" class="focus:text-hovercolor font-semibold border-b-2 border-transparent focus:border-none flex px-5 items-center py-6 text-md leading-5 text-white hover:text-hovercolor focus:outline-none uppercase transform transition duration-2000">
-                                Blog
-                            </a>
+                                    Blog
+                                </a>
                                 <a href="javascript: void(0)" class="focus:text-hovercolor font-semibold border-b-2 border-transparent focus:border-none flex px-5 items-center py-6 text-md leading-5 text-white hover:text-hovercolor focus:outline-none uppercase transform transition duration-2000">
-                                Contact
-                            </a>
+                                    Contact
+                                </a>
                             </div>
                             <div class="hidden xl:flex items-center">
                                 <div class="relative space-x-3 md:mr-3 my-2">
-                                    <button class="focus:border-none font-semibold text-sm focus:text-hovercolor focus:outline-none bg-hovercolor text-white transform duration-200 hover:text-hovercolor hover:bg-white rounded-md px-5 py-2">Sign
-                                    Up</button>
-                                    <button class="focus:border-none font-semibold text-sm focus:text-hovercolor focus:outline-none bg-white text-hovercolor transform duration-200 hover:text-white hover:bg-hovercolor rounded-md px-5 py-2">Log
-                                    In</button>
+                                    <button class="focus:border-none font-semibold text-sm focus:text-hovercolor focus:outline-none bg-hovercolor text-white transform duration-200 hover:text-hovercolor hover:bg-white rounded-md px-5 py-2"><a href="/register">Sign
+                                        Up</a> </button>
+                                    <button class="focus:border-none font-semibold text-sm focus:text-hovercolor focus:outline-none bg-white text-hovercolor transform duration-200 hover:text-white hover:bg-hovercolor rounded-md px-5 py-2"><a
+                                            href="/login"> Log In</a></button>
                                 </div>
                                 <div class="ml-6 relative">
                                     <button aria-label="dropdown" class="focus:outline-none border-b-2 border-transparent focus:border-indigo-700 py-3  focus:text-indigo-700 text-gray-600 hover:text-indigo-700 flex items-center relative" onclick="dropdownHandler(this)">
-                                    <ul class="p-2 w-40 border-r bg-white absolute rounded right-0 shadow top-0 mt-16 hidden">
-                                        <li
-                                            class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-hovercolor focus:text-hovercolor focus:outline-none">
-                                            <a href="" class="focus:underline focus:text-indigo-700 focus:outline-none flex items-center">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="20"
-                                                    height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fd7e14" fill="none"
-                                                    stroke-linecap="round" stroke-linejoin="round">
-                                                    <path stroke="none" d="M0 0h24v24H0z" />
-                                                    <circle cx="12" cy="7" r="4" />
-                                                    <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-                                                </svg>
-                                                <span class="ml-2 hover:text-hovercolor">My Profile</span>
-                                            </a>
-                                        </li>
-                                        <li
-                                            class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-hovercolor focus:text-hovercolor focus:outline-none">
-                                            <a href="" class="focus:underline focus:text-indigo-700 focus:outline-none flex items-center">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="20"
-                                                    height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fd7e14" fill="none"
-                                                    stroke-linecap="round" stroke-linejoin="round">
-                                                    <path stroke="none" d="M0 0h24v24H0z" />
-                                                    <circle cx="12" cy="7" r="4" />
-                                                    <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-                                                </svg>
-                                                <span class="ml-2 hover:text-hovercolor">My Profile</span>
-                                            </a>
-                                        </li>
-                                        <li
-                                            class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-hovercolor focus:text-hovercolor focus:outline-none">
-                                            <a href="" class="focus:underline focus:text-indigo-700 focus:outline-none flex items-center">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="20"
-                                                    height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fd7e14" fill="none"
-                                                    stroke-linecap="round" stroke-linejoin="round">
-                                                    <path stroke="none" d="M0 0h24v24H0z" />
-                                                    <circle cx="12" cy="7" r="4" />
-                                                    <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-                                                </svg>
-                                                <span class="ml-2 hover:text-hovercolor">My Profile</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    <div
-                                        class="cursor-pointer flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-white transition duration-150 ease-in-out">
-                                        <img class="rounded-full h-10 w-10 object-cover"
-                                            src="https://tuk-cdn.s3.amazonaws.com/assets/components/horizontal_navigation/hn_2.png" alt="logo" />
-                                    </div>
-                                    <div class="ml-2 ">
-                                        <i class="fa-solid fa-angle-down text-sm text-white hover:text-hovercolor"></i>
-                                    </div>
-                                </button>
+                                        <ul class="p-2 w-40 border-r bg-white absolute rounded right-0 shadow top-0 mt-16 hidden">
+                                            <li
+                                                class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-hovercolor focus:text-hovercolor focus:outline-none">
+                                                <a href="" class="focus:underline focus:text-indigo-700 focus:outline-none flex items-center">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="20"
+                                                        height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fd7e14" fill="none"
+                                                        stroke-linecap="round" stroke-linejoin="round">
+                                                        <path stroke="none" d="M0 0h24v24H0z" />
+                                                        <circle cx="12" cy="7" r="4" />
+                                                        <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                                                    </svg>
+                                                    <span class="ml-2 hover:text-hovercolor">My Profile</span>
+                                                </a>
+                                            </li>
+                                            <li
+                                                class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-hovercolor focus:text-hovercolor focus:outline-none">
+                                                <a href="" class="focus:underline focus:text-indigo-700 focus:outline-none flex items-center">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="20"
+                                                        height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fd7e14" fill="none"
+                                                        stroke-linecap="round" stroke-linejoin="round">
+                                                        <path stroke="none" d="M0 0h24v24H0z" />
+                                                        <circle cx="12" cy="7" r="4" />
+                                                        <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                                                    </svg>
+                                                    <span class="ml-2 hover:text-hovercolor">My Profile</span>
+                                                </a>
+                                            </li>
+                                            <li
+                                                class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-hovercolor focus:text-hovercolor focus:outline-none">
+                                                <a href="" class="focus:underline focus:text-indigo-700 focus:outline-none flex items-center">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="20"
+                                                        height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fd7e14" fill="none"
+                                                        stroke-linecap="round" stroke-linejoin="round">
+                                                        <path stroke="none" d="M0 0h24v24H0z" />
+                                                        <circle cx="12" cy="7" r="4" />
+                                                        <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                                                    </svg>
+                                                    <span class="ml-2 hover:text-hovercolor">My Profile</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <div
+                                            class="cursor-pointer flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-white transition duration-150 ease-in-out">
+                                            <img class="rounded-full h-10 w-10 object-cover"
+                                                src="https://tuk-cdn.s3.amazonaws.com/assets/components/horizontal_navigation/hn_2.png" alt="logo" />
+                                        </div>
+                                        <div class="ml-2 ">
+                                            <i class="fa-solid fa-angle-down text-sm text-white hover:text-hovercolor"></i>
+                                        </div>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -98,8 +98,8 @@
                     </div>
                     <div class="flex items-center">
                         <button id="menu" aria-label="open menu" class="focus:outline-none focus:ring-2 focus:ring-gray-600 rounded-md text-gray-800" onclick="sidebarHandler(true)">
-                        <i class="fa-solid fa-bars text-2xl text-white hover:text-hovercolor transform transition delay-150 ease-in-out"></i>
-                    </button>
+                            <i class="fa-solid fa-bars text-2xl text-white hover:text-hovercolor transform transition delay-150 ease-in-out"></i>
+                        </button>
                     </div>
                 </div>
                 <!--Mobile responsive sidebar-->
@@ -116,9 +116,9 @@
                                                 <p tabindex="0" class="focus:outline-none text-base md:text-2xl text-gray-800 ml-3"></p>
                                             </div>
                                             <button id="cross" aria-label="close menu" class="focus:outline-none focus:ring-2 rounded-md text-gray-800" onclick="sidebarHandler(false)">
-                                            <img class="icon icon-tabler icon-tabler-x"
-                                                src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light-with-button-svg11.svg" alt="cross" />
-                                        </button>
+                                                <img class="icon icon-tabler icon-tabler-x"
+                                                    src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light-with-button-svg11.svg" alt="cross" />
+                                            </button>
                                         </div>
                                     </div>
                                     <ul class="f-m-m">
@@ -176,34 +176,34 @@
                                         </li>
                                         <li>
                                             <a class="cursor-pointer">
-                                                <button class="text-gray-800 pt-8">
-                                                <div class="flex items-center bg-background px-4 py-2 rounded-md">
-                                                    <p tabindex="0"
-                                                        class="focus:outline-none focus:text-indigo-600 text-white xl:text-base md:text-2xl text-base">
-                                                        Sign Up</p>
-                                                </div>
-                                            </button>
+                                                <button class=" text-gray-800 pt-8 ">
+                                                    <div class="flex items-center bg-background px-4 py-2 rounded-md ">
+                                                        <p tabindex="0 "
+                                                            class="focus:outline-none focus:text-indigo-600 text-white xl:text-base md:text-2xl text-base ">
+                                                            Sign Up</p>
+                                                    </div>
+                                                </button>
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="cursor-pointer">
-                                                <button class="text-gray-800 pt-8">
-                                                <div class="flex items-center bg-background px-[22px] py-2 rounded-md">
-                                                    <p tabindex="0"
-                                                        class="focus:outline-none focus:text-indigo-600 text-white xl:text-base md:text-2xl text-base">
-                                                        Log In</p>
-                                                </div>
-                                            </button>
+                                            <a class="cursor-pointer ">
+                                                <button class="text-gray-800 pt-8 ">
+                                                    <div class="flex items-center bg-background px-[22px] py-2 rounded-md ">
+                                                        <p tabindex="0 "
+                                                            class="focus:outline-none focus:text-indigo-600 text-white xl:text-base md:text-2xl text-base ">
+                                                            Log In</p>
+                                                    </div>
+                                                </button>
                                             </a>
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="w-full pt-4">
-                                    <div class="border-t border-gray-300">
-                                        <div class="w-full flex items-center justify-between pt-1">
-                                            <div class="flex items-center">
-                                                <i class="fa-solid fa-user text-sm hover:text-hovercolor text-background"></i>
-                                                <p tabindex="0" class="focus:outline-none text-gray-800 text-base leading-4 ml-2">Guest</p>
+                                <div class="w-full pt-4 ">
+                                    <div class="border-t border-gray-300 ">
+                                        <div class="w-full flex items-center justify-between pt-1 ">
+                                            <div class="flex items-center ">
+                                                <i class="fa-solid fa-user text-sm hover:text-hovercolor text-background "></i>
+                                                <p tabindex="0 " class="focus:outline-none text-gray-800 text-base leading-4 ml-2 ">Guest</p>
                                             </div>
                                         </div>
                                     </div>
@@ -216,50 +216,50 @@
         </div>
         <!-- Naviagtion bar -->
         <!-- Carousel -->
-        <!-- <div class="carousel relative shadow-2xl bg-white">
-        <div class="carousel-inner relative overflow-hidden">
+        <!-- <div class="carousel relative shadow-2xl bg-white ">
+        <div class="carousel-inner relative overflow-hidden ">
   
-            <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden="" checked="checked">
-            <div class="carousel-item absolute opacity-0" style="height:75vh;">
-                <div class="w-full  bg-yellow-500 text-white text-5xl text-cente">
-                    <img class="w-auto" src="https://www.sih.gov.in/img1/slider/sliderbannerM40.jpg" id="carousel-img" alt="">
+            <input class="carousel-open " type="radio " id="carousel-1 " name="carousel " aria-hidden="true " hidden=" " checked="checked ">
+            <div class="carousel-item absolute opacity-0 " style="height:75vh; ">
+                <div class="w-full bg-yellow-500 text-white text-5xl text-cente ">
+                    <img class="w-auto " src="https://www.sih.gov.in/img1/slider/sliderbannerM40.jpg " id="carousel-img " alt=" ">
                 </div>
             </div>
-            <label for="carousel-3"
-                class="prev control-1 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-yellow-500 leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
-            <label for="carousel-2"
-                class="next control-1 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label>
+            <label for="carousel-3 "
+                class="prev control-1 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-yellow-500 leading-tight text-center z-10 inset-y-0 left-0 my-auto ">‹</label>
+            <label for="carousel-2 "
+                class="next control-1 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto ">›</label>
 
    
-            <input class="carousel-open" type="radio" id="carousel-2" name="carousel" aria-hidden="true" hidden="">
-            <div class="carousel-item absolute opacity-0" style="height:75vh;">
-                <div class="block h-full w-full bg-yellow-500 text-white text-5xl text-center">Slide 2</div>
+            <input class="carousel-open " type="radio " id="carousel-2 " name="carousel " aria-hidden="true " hidden=" ">
+            <div class="carousel-item absolute opacity-0 " style="height:75vh; ">
+                <div class="block h-full w-full bg-yellow-500 text-white text-5xl text-center ">Slide 2</div>
             </div>
-            <label for="carousel-1"
-                class="prev control-2 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
-            <label for="carousel-3"
-                class="next control-2 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label>
+            <label for="carousel-1 "
+                class="prev control-2 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto ">‹</label>
+            <label for="carousel-3 "
+                class="next control-2 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto ">›</label>
 
        
-            <input class="carousel-open" type="radio" id="carousel-3" name="carousel" aria-hidden="true" hidden="">
-            <div class="carousel-item absolute opacity-0" style="height:75vh;">
-                <div class="block h-full w-full bg-yellow-500 text-white text-5xl text-center">Slide 3</div>
+            <input class="carousel-open " type="radio " id="carousel-3 " name="carousel " aria-hidden="true " hidden=" ">
+            <div class="carousel-item absolute opacity-0 " style="height:75vh; ">
+                <div class="block h-full w-full bg-yellow-500 text-white text-5xl text-center ">Slide 3</div>
             </div>
-            <label for="carousel-2"
-                class="prev control-3 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
-            <label for="carousel-1"
-                class="next control-3 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label>
+            <label for="carousel-2 "
+                class="prev control-3 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto ">‹</label>
+            <label for="carousel-1 "
+                class="next control-3 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto ">›</label>
 
           
-            <ol class="carousel-indicators">
-                <li class="inline-block mr-3">
-                    <label for="carousel-1" class="carousel-bullet cursor-pointer block text-4xl text-white hover:text-blue-700">•</label>
+            <ol class="carousel-indicators ">
+                <li class="inline-block mr-3 ">
+                    <label for="carousel-1 " class="carousel-bullet cursor-pointer block text-4xl text-white hover:text-blue-700 ">•</label>
                 </li>
-                <li class="inline-block mr-3">
-                    <label for="carousel-2" class="carousel-bullet cursor-pointer block text-4xl text-white hover:text-blue-700">•</label>
+                <li class="inline-block mr-3 ">
+                    <label for="carousel-2 " class="carousel-bullet cursor-pointer block text-4xl text-white hover:text-blue-700 ">•</label>
                 </li>
-                <li class="inline-block mr-3">
-                    <label for="carousel-3" class="carousel-bullet cursor-pointer block text-4xl text-white hover:text-blue-700">•</label>
+                <li class="inline-block mr-3 ">
+                    <label for="carousel-3 " class="carousel-bullet cursor-pointer block text-4xl text-white hover:text-blue-700 ">•</label>
                 </li>
             </ol>
 
@@ -267,51 +267,54 @@
     </div> -->
         <!-- Carousel -->
         <!-- Cards for problem statement -->
-        <div class="py-8 bg-blue-50">
-            <div class="px-4">
-                <div class="block md:flex justify-between md:-mx-2">
-                    <div class="w-full lg:w-1/3 md:mx-2 mb-4 md:mb-0">
-                        <div class="p-6 max-w-sm bg-background rounded-lg  shadow-md">
-                            <i class="fa-solid fa-graduation-cap text-3xl text-white"></i>
+        <div class="py-8 bg-blue-50 ">
+            <div class="px-4 ">
+                <div class="block md:flex justify-between md:-mx-2 ">
+                    <div class="w-full lg:w-1/3 md:mx-2 mb-4 md:mb-0 ">
+                        <div class="p-6 max-w-sm bg-background rounded-lg shadow-md ">
+                            <i class="fa-solid fa-graduation-cap text-3xl text-white "></i>
                             <div>
                                 <h5 class="mb-2 text-2xl font-semibold tracking-tight text-white ">Problem Statements</h5>
                             </div>
-                            <p class="mb-3 font-normal text-stone-200">The Problem Statement are the problems for which teams students make their projects</p>
-                            <a href="#" class="inline-flex items-center text-white hover:underline hover:text-hovercolor">
-                            See all problem statements
-                            <i class="fa-solid fa-arrow-up-right-from-square mx-2"></i>
-                        </a>
+                            <p class="mb-3 font-normal text-stone-200 ">The Problem Statement are the problems for which teams students make their projects
+                            </p>
+                            <a href="# " class="inline-flex items-center text-white hover:underline hover:text-hovercolor ">
+                                See all problem statements
+                                <i class="fa-solid fa-arrow-up-right-from-square mx-2 "></i>
+                            </a>
                         </div>
 
 
                     </div>
-                    <div class="w-full lg:w-1/3 md:mx-2 mb-4 md:mb-0">
+                    <div class="w-full lg:w-1/3 md:mx-2 mb-4 md:mb-0 ">
 
-                        <div class="p-6 max-w-sm bg-background rounded-lg  shadow-md">
-                            <i class="fa-solid fa-graduation-cap text-3xl text-white"></i>
+                        <div class="p-6 max-w-sm bg-background rounded-lg shadow-md ">
+                            <i class="fa-solid fa-graduation-cap text-3xl text-white "></i>
                             <div>
                                 <h5 class="mb-2 text-2xl font-semibold tracking-tight text-white ">Problem Statements</h5>
                             </div>
-                            <p class="mb-3 font-normal text-stone-200">The Problem Statement are the problems for which teams students make their projects</p>
-                            <a href="#" class="inline-flex items-center text-white hover:underline hover:text-hovercolor">
-                            See all problem statements
-                            <i class="fa-solid fa-arrow-up-right-from-square mx-2"></i>
-                        </a>
+                            <p class="mb-3 font-normal text-stone-200 ">The Problem Statement are the problems for which teams students make their projects
+                            </p>
+                            <a href="# " class="inline-flex items-center text-white hover:underline hover:text-hovercolor ">
+                                See all problem statements
+                                <i class="fa-solid fa-arrow-up-right-from-square mx-2 "></i>
+                            </a>
                         </div>
 
                     </div>
-                    <div class="w-full lg:w-1/3 md:mx-2 mb-4 md:mb-0">
+                    <div class="w-full lg:w-1/3 md:mx-2 mb-4 md:mb-0 ">
 
-                        <div class="p-6 max-w-sm bg-background rounded-lg  shadow-md">
-                            <i class="fa-solid fa-graduation-cap text-3xl text-white"></i>
+                        <div class="p-6 max-w-sm bg-background rounded-lg shadow-md ">
+                            <i class="fa-solid fa-graduation-cap text-3xl text-white "></i>
                             <div>
                                 <h5 class="mb-2 text-2xl font-semibold tracking-tight text-white ">Problem Statements</h5>
                             </div>
-                            <p class="mb-3 font-normal text-stone-200">The Problem Statement are the problems for which teams students make their projects</p>
-                            <a href="#" class="inline-flex items-center text-white hover:underline hover:text-hovercolor">
-                            See all problem statements
-                            <i class="fa-solid fa-arrow-up-right-from-square mx-2"></i>
-                        </a>
+                            <p class="mb-3 font-normal text-stone-200 ">The Problem Statement are the problems for which teams students make their projects
+                            </p>
+                            <a href="# " class="inline-flex items-center text-white hover:underline hover:text-hovercolor ">
+                                See all problem statements
+                                <i class="fa-solid fa-arrow-up-right-from-square mx-2 "></i>
+                            </a>
                         </div>
 
                     </div>
@@ -319,18 +322,17 @@
             </div>
         </div>
         <!-- Cards -->
-        <!-- <section class="bg-gray-900 h-screen flex justify-center items-center gap-x-16 text-white">
-        <div class="w-[300px] h-[420px] bg-transparent cursor-pointer group perspective">
-            <div class="relative preserve-3d group-hover:my-rotate-y-180 w-full h-full duration-1000">
-                <div class="absolute backface-hidden border-2 w-full h-full">
-                    <img src="/kingsman.jpgy
-                    "
-                        class="w-full h-full" />
+        <!-- <section class="bg-gray-900 h-screen flex justify-center items-center gap-x-16 text-white ">
+        <div class="w-[300px] h-[420px] bg-transparent cursor-pointer group perspective ">
+            <div class="relative preserve-3d group-hover:my-rotate-y-180 w-full h-full duration-1000 ">
+                <div class="absolute backface-hidden border-2 w-full h-full ">
+                    <img src="/kingsman.jpgy "
+                        class="w-full h-full " />
                 </div>
-                <div class="absolute my-rotate-y-180 backface-hidden w-full h-full bg-gray-100 overflow-hidden">
-                    <div class="text-center flex flex-col items-center justify-center h-full text-gray-800 px-2 pb-24">
-                        <h1 class="text-3xl font-semibold">The King's Man</h1>
-                        <p class="my-2">9.0 Rating</p>
+                <div class="absolute my-rotate-y-180 backface-hidden w-full h-full bg-gray-100 overflow-hidden ">
+                    <div class="text-center flex flex-col items-center justify-center h-full text-gray-800 px-2 pb-24 ">
+                        <h1 class="text-3xl font-semibold ">The King's Man</h1>
+                        <p class="my-2 ">9.0 Rating</p>
                         <p>
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis
                             itaque assumenda saepe animi maxime libero non quasi, odit natus
@@ -338,7 +340,7 @@
                             amet velit accusamus.
                         </p>
                         <button
-                            class="bg-teal-500 px-6 py-2 font-semibold text-white rounded-full absolute -bottom-20 delay-500 duration-1000 group-hover:bottom-20 scale-0 group-hover:scale-125">
+                            class="bg-teal-500 px-6 py-2 font-semibold text-white rounded-full absolute -bottom-20 delay-500 duration-1000 group-hover:bottom-20 scale-0 group-hover:scale-125 ">
                             Watch Now
                         </button>
                     </div>
@@ -349,107 +351,111 @@
         <!-- What -->
         <section>
             <!-- Flex container -->
-            <div class="container flex flex-col-reverse item-center mx-auto px-6 md:flex-row md:space-y-0">
+            <div class="container flex flex-col-reverse item-center mx-auto px-6 md:flex-row md:space-y-0 ">
                 <!-- Left Section -->
-                <div class="flex flex-col mb-20 mt-12 md:w-1/2">
+                <div class="flex flex-col mb-20 mt-12 md:w-1/2 ">
                     <h1 class="mx-w-md text-3xl mb-6 font-bold text-center text-hovercolor md:text-left uppercase ">WHAT IS SMART-BIT HACK
                     </h1>
-                    <p class="mx-w-sm text-center  text-stone-500 md:text-left">Smart India Hackathon is a nationwide initiative to provide students with a platform to solve some of the pressing problems we face in our daily lives, and thus inculcate a culture of product innovation and a mindset of problem-solving.
+                    <p class="mx-w-sm text-center text-stone-500 md:text-left ">Smart India Hackathon is a nationwide initiative to provide students with a platform to solve some of the pressing problems we face in our daily lives, and thus inculcate a culture of product innovation and a mindset of problem-solving.
                         The first four editions SIH2017, SIH2018, SIH2019 and SIH2020 proved to be extremely successful in promoting innovation out-of-the-box thinking in young minds, especially engineering students from across India.
                     </p>
                 </div>
                 <!-- Right Section -->
-                <div class="mt-6 md:w-1/2 md:mt-0 mx-auto">
-                    <img src="https://vectr.com/assets/images/raster-vs-vector.jpg" alt="">
+                <div class="mt-6 md:w-1/2 md:mt-0 mx-auto ">
+                    <img src="https://vectr.com/assets/images/raster-vs-vector.jpg " alt=" ">
                 </div>
             </div>
         </section>
         <!-- Who can join -->
         <!-- Box -->
-        <div class="bg-blue-50 px-10 py-5 w-full mb-3">
-            <div class="bg-background text-center py-6 rounded-lg">
+        <div class="bg-blue-50 px-10 py-5 w-full mb-3 ">
+            <div class="bg-background text-center py-6 rounded-lg ">
                 <span class="text-xl font-bold md:text-5xl text-white uppercase ">SIH JOURNEY SO FAR FROM 2017</span>
-                <div class="flex flex-col md:flex-row space-x-16">
-                    <div class="p-5 text-white font-semibold text-lg md:text-2xl">15,00,000+<br> <span class="text-md md:text-xl">students</span></div>
-                    <div class="p-5 text-white font-semibold text-lg md:text-2xl">15,00,000+<br> <span class="text-md md:text-xl">students</span></div>
-                    <div class="p-5 text-white font-semibold text-lg md:text-2xl">15,00,000+<br> <span class="text-md md:text-xl">students</span></div>
-                    <div class="p-5 text-white font-semibold text-lg md:text-2xl">15,00,000+<br> <span class="text-md md:text-xl">students</span></div>
+                <div class="flex flex-col md:flex-row space-x-16 ">
+                    <div class="p-5 text-white font-semibold text-lg md:text-2xl ">15,00,000+<br> <span class="text-md md:text-xl ">students</span>
+                    </div>
+                    <div class="p-5 text-white font-semibold text-lg md:text-2xl ">15,00,000+<br> <span class="text-md md:text-xl ">students</span>
+                    </div>
+                    <div class="p-5 text-white font-semibold text-lg md:text-2xl ">15,00,000+<br> <span class="text-md md:text-xl ">students</span>
+                    </div>
+                    <div class="p-5 text-white font-semibold text-lg md:text-2xl ">15,00,000+<br> <span class="text-md md:text-xl ">students</span>
+                    </div>
                 </div>
             </div>
         </div>
         <!-- Box -->
         <!-- Footer -->
-        <footer class="py-6 bg-background text-white">
-            <div class="container px-6 mx-auto space-y-6 divide-y divide-gray-400 md:space-y-12 divide-opacity-50">
-                <div class="grid grid-cols-12">
-                    <div class="pb-6 col-span-full md:pb-0 md:col-span-6">
-                        <a rel="noopener noreferrer" href="#" class="flex justify-center space-x-3 md:justify-start">
-                            <img src="https://www.sih.gov.in/img1/SIH2022-white-logo.png" class="mt-10 md:h-24" alt="logo" />
+        <footer class="py-6 bg-background text-white ">
+            <div class="container px-6 mx-auto space-y-6 divide-y divide-gray-400 md:space-y-12 divide-opacity-50 ">
+                <div class="grid grid-cols-12 ">
+                    <div class="pb-6 col-span-full md:pb-0 md:col-span-6 ">
+                        <a rel="noopener noreferrer " href="# " class="flex justify-center space-x-3 md:justify-start ">
+                            <img src="https://www.sih.gov.in/img1/SIH2022-white-logo.png " class="mt-10 md:h-24 " alt="logo " />
                         </a>
                     </div>
-                    <div class="col-span-6 text-center md:text-left md:col-span-3">
-                        <p class="pb-1 text-lg font-medium">Category</p>
+                    <div class="col-span-6 text-center md:text-left md:col-span-3 ">
+                        <p class="pb-1 text-lg font-medium ">Category</p>
                         <ul>
                             <li>
-                                <a rel="noopener noreferrer" href="#" class="text-white hover:text-hovercolor">Link</a>
+                                <a rel="noopener noreferrer " href="# " class="text-white hover:text-hovercolor ">Link</a>
                             </li>
                             <li>
-                                <a rel="noopener noreferrer" href="#" class="text-white hover:text-hovercolor">Link</a>
+                                <a rel="noopener noreferrer " href="# " class="text-white hover:text-hovercolor ">Link</a>
                             </li>
                             <li>
-                                <a rel="noopener noreferrer" href="#" class="text-white hover:text-hovercolor">Link</a>
+                                <a rel="noopener noreferrer " href="# " class="text-white hover:text-hovercolor ">Link</a>
                             </li>
                             <li>
-                                <a rel="noopener noreferrer" href="#" class="text-white hover:text-hovercolor">Link</a>
+                                <a rel="noopener noreferrer " href="# " class="text-white hover:text-hovercolor ">Link</a>
                             </li>
                             <li>
-                                <a rel="noopener noreferrer" href="#" class="text-white hover:text-hovercolor">Link</a>
+                                <a rel="noopener noreferrer " href="# " class="text-white hover:text-hovercolor ">Link</a>
                             </li>
                         </ul>
                     </div>
-                    <div class="col-span-6 text-center md:text-left md:col-span-3">
-                        <p class="pb-1 text-lg font-medium">Category</p>
+                    <div class="col-span-6 text-center md:text-left md:col-span-3 ">
+                        <p class="pb-1 text-lg font-medium ">Category</p>
                         <ul>
                             <li>
-                                <a rel="noopener noreferrer" href="#" class="text-white hover:text-hovercolor">Link</a>
+                                <a rel="noopener noreferrer " href="# " class="text-white hover:text-hovercolor ">Link</a>
                             </li>
                             <li>
-                                <a rel="noopener noreferrer" href="#" class="text-white hover:text-hovercolor">Link</a>
+                                <a rel="noopener noreferrer " href="# " class="text-white hover:text-hovercolor ">Link</a>
                             </li>
                             <li>
-                                <a rel="noopener noreferrer" href="#" class="text-white hover:text-hovercolor">Link</a>
+                                <a rel="noopener noreferrer " href="# " class="text-white hover:text-hovercolor ">Link</a>
                             </li>
                             <li>
-                                <a rel="noopener noreferrer" href="#" class="text-white hover:text-hovercolor">Link</a>
+                                <a rel="noopener noreferrer " href="# " class="text-white hover:text-hovercolor ">Link</a>
                             </li>
                             <li>
-                                <a rel="noopener noreferrer" href="#" class="text-white hover:text-hovercolor">Link</a>
+                                <a rel="noopener noreferrer " href="# " class="text-white hover:text-hovercolor ">Link</a>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="grid justify-center pt-6 lg:justify-between">
-                    <div class="flex flex-col self-center text-sm text-center md:block lg:col-start-1 md:space-x-6">
+                <div class="grid justify-center pt-6 lg:justify-between ">
+                    <div class="flex flex-col self-center text-sm text-center md:block lg:col-start-1 md:space-x-6 ">
                         <span>&copy; 2022 All rights reserved</span>
-                        <a rel="noopener noreferrer" href="#">
+                        <a rel="noopener noreferrer " href="# ">
                             <span>Privacy policy</span>
                         </a>
-                        <a rel="noopener noreferrer" href="#">
+                        <a rel="noopener noreferrer " href="# ">
                             <span>Terms of service</span>
                         </a>
                     </div>
-                    <div class="flex justify-center pt-4 space-x-4 lg:pt-0 lg:col-end-13">
-                        <a rel="noopener noreferrer" href="#" title="Twitter" class="flex items-center justify-center w-10 h-10 rounded-full bg-violet-400 text-gray-900">
-                            <i class="fa-brands text-2xl text-black hover:text-white fa-linkedin"></i>
+                    <div class="flex justify-center pt-4 space-x-4 lg:pt-0 lg:col-end-13 ">
+                        <a rel="noopener noreferrer " href="# " title="Twitter " class="flex items-center justify-center w-10 h-10 rounded-full bg-violet-400 text-gray-900 ">
+                            <i class="fa-brands text-2xl text-black hover:text-white fa-linkedin "></i>
                         </a>
-                        <a rel="noopener noreferrer" href="#" title="Twitter" class="flex items-center justify-center w-10 h-10 rounded-full bg-violet-400 text-gray-900">
-                            <i class="fa-brands text-2xl text-black hover:text-white fa-facebook"></i>
+                        <a rel="noopener noreferrer " href="# " title="Twitter " class="flex items-center justify-center w-10 h-10 rounded-full bg-violet-400 text-gray-900 ">
+                            <i class="fa-brands text-2xl text-black hover:text-white fa-facebook "></i>
                         </a>
-                        <a rel="noopener noreferrer" href="#" title="Twitter" class="flex items-center justify-center w-10 h-10 rounded-full bg-violet-400 text-gray-900">
-                            <i class="fa-brands text-2xl text-black hover:text-white fa-twitter"></i>
+                        <a rel="noopener noreferrer " href="# " title="Twitter " class="flex items-center justify-center w-10 h-10 rounded-full bg-violet-400 text-gray-900 ">
+                            <i class="fa-brands text-2xl text-black hover:text-white fa-twitter "></i>
                         </a>
-                        <a rel="noopener noreferrer" href="#" title="Twitter" class="flex items-center justify-center w-10 h-10 rounded-full bg-violet-400 text-gray-900">
-                            <i class="fa-brands text-2xl text-black hover:text-white fa-instagram"></i>
+                        <a rel="noopener noreferrer " href="# " title="Twitter " class="flex items-center justify-center w-10 h-10 rounded-full bg-violet-400 text-gray-900 ">
+                            <i class="fa-brands text-2xl text-black hover:text-white fa-instagram "></i>
                         </a>
                     </div>
                 </div>
@@ -459,7 +465,7 @@
 
 
 
-        <script src="script.js"></script>
+        <script src="script.js "></script>
     </body>
 
-    <%- include('layouts/footer')  %>
+    <%- include('layouts/footer') %>
