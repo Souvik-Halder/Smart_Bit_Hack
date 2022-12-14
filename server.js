@@ -2,7 +2,7 @@
 const passport=require('passport');
 const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 7000;
 const mongoose = require('mongoose');
 const session = require('express-session');
 const flash=require('connect-flash');

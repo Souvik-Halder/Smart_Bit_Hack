@@ -1,0 +1,61 @@
+<%- include('layouts/header')  %> 
+<div class="container">
+    <div class="row mt-4 mb-4">
+        <div class="col-lg-12">
+            <!-- <div class="alert alert-warning alert-dismissible fade show" role="alert">
+           
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div> -->
+           <div class="table-responsive">
+               <table class="table table-striped">
+                <thead>
+                    <tr class="table-dark">
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Branch</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                 
+                  <% teammemberdetails.forEach((row,index)=>{ %> 
+                    <tr>
+                        <td><%= index+1 %> </td>
+                        <td><%= row.name1 %> </td>
+                        <td><%= row.branch1 %> </td>
+                        <td><%= row.emailid1 %>  </td>
+                        <td><%= row.phone1 %>  </td>
+                        <td><a  class="text-success"><i class="fa-solid fa-pen"></i></a>
+                            <a  class="text-danger "><i class="fa-solid fa-trash-can mx-3"></i></a></td>
+                    </tr>
+                  <% }) %> 
+                </tbody>
+               </table>
+           </div>
+        </div>
+    </div>
+    
+
+</div>
+    
+     
+    <% if(teammemberdetails.length>0 && teammemberdetails.length<5) { %>
+      
+        <p>hi</p>
+        <button class="btn btn-primary"><a class="text-white no-underline" href="/add_team_member/<%- id  %> ">Add team details</a></button>
+              
+          <% } else if(teammemberdetails.length<0) { %>
+          <tr>
+              <td class="p-4"><span>No Team found </span></td>
+              <button class="btn btn-primary"><a class="text-white no-underline" href="/add_team_member/<%- id  %> ">Add team details</a></button>
+              
+          </tr>
+         
+          <% }else{ %>
+            <a href="/get_problem_statement/<%- id  %> "><button>Get your problem Statement details</button></a>
+
+           
+            <% } %>     
+          <%- include('layouts/footer')  %> 

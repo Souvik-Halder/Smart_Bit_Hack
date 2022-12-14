@@ -5,18 +5,18 @@ const express = require('express');
 const router=express.Router();
 const bcrypt=require('bcryptjs');
 const passport=require('passport');
-
+const guest=require('../middlewares/guest')
 const User = require('../models/User');
 //Login page
 router.get('/login',(req,res)=> res.render('login'));
 
 //Register Page
-router.get('/register',(req,res)=>{
+router.get('/register',guest,(req,res)=>{
     res.render('register');
 })
 
 //Register Handle
-router.post('/register',(req,res)=>{
+router.post('/register',guest,(req,res)=>{
 const {name,email,password,password2}=req.body;
 let errors=[];
 //Check required fields
@@ -78,7 +78,8 @@ if(errors.length>0){
 }
 })
  
-router.post('/login',(req,res,next)=>{
+router.post('/login',guest,(req,res,next)=>{
+   
     passport.authenticate('local',(err, user, info) => {
         if(err) {
             req.flash('error', info.message )
@@ -93,15 +94,18 @@ router.post('/login',(req,res,next)=>{
                 req.flash('error', info.message ) 
                  next(err)
             }
-            console.log(user);
             
-             res.render('index',{user})
+         console.log(user.id)
+         const user_id=user.id
+         console.log(user_id)
+            req.flash({type:"danger",msg:"Now you can submit your application"})
+             res.render('index',{user_id})
         })
     })(req,res,next);
 })
 
 
-router.get('/tailwind',(req,res)=>{
+router.get('/tailwind',guest,(req,res)=>{
     res.render('tailwind');
 })
 

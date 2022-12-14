@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <select name="" id=""  onchange="showme(this.value)">
+        <option value="">Select</option>
+        <option value="a">AA</option>
+        
+        <option value="b">BB</option>
+    </select>
+    <br><br><br>
+  <div id="x" class="x" style="background-color: yellow; display: none;"><h1>This is AA div</h1></div>
+  <div id="x" class="x" style="background-color: yellow; display: none;"><h1>This is AA div</h1></div>
+  <div id="x" class="x" style="background-color: yellow; display: none;"><h1>This is AA div</h1></div>
+  <div id="x" class="x" style="background-color: yellow; display: none;"><h1>This is AA div</h1></div>
+  <div id="y" style="background-color: pink; display: none;"><h1>This is BB div</h1></div>
+  <script>
+    function showme(value){
+        if(value=="a"){
+            let element1=document.getElementsByClassName('x');
+            Array.from(element1).forEach((element)=>{
+                console.log(element);
+                element.style.display='block';
+            })
+            document.getElementById('y').style.display='none'
+        }
+        if(value=="b"){
+            let element1=document.getElementsByClassName('x');
+            Array.from(element1).forEach((element)=>{
+                console.log(element);
+                element.style.display='none';
+            })
+           
+            document.getElementById('y').style.display="block"
+        }
+    }
+  </script>
+</body>
+</html>

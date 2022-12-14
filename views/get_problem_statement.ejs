@@ -1,0 +1,56 @@
+<%- include('layouts/header') %> 
+<div class="container">
+    <div class="row mt-4 mb-4">
+        <div class="col-lg-12">
+            <!-- <div class="alert alert-warning alert-dismissible fade show" role="alert">
+           
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div> -->
+           <div class="table-responsive">
+               <table class="table table-striped">
+                <thead>
+                    <tr class="table-dark">
+                        <th>ID</th>
+                        <th>Problem Statement idea</th>
+                        <th>Problem Statement Description</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+   <% if (problemstatements.length>0) { %>
+    
+                  <% problemstatements.forEach((row,index)=>{ %> 
+                    <tr>
+                        <td><%= index+1 %> </td>
+                        <td><%= row.idea %> </td>
+                        <td><%= row.ideadesc %> </td>
+                      
+                        <td><a  class="text-success"><i class="fa-solid fa-pen"></i></a>
+                            <a  class="text-danger "><i class="fa-solid fa-trash-can mx-3"></i></a></td>
+                    </tr>
+                  <% }) %> 
+                  <% } %>   
+                </tbody>
+               </table>
+           </div>
+        </div>
+    </div>
+    
+
+</div>
+              
+
+<% if(problemstatements.length>0 && problemstatements.length<5) { %>
+      
+    <p>hi</p>
+    <button class="btn btn-primary"><a class="text-white no-underline" href="/add_problem_statement/<%- id  %> ">Add team details</a></button>
+          
+      <% } else { %>
+      <tr>
+          <td class="p-4"><span>Back to the home </span></td>
+         <a href="/"><button class="btn btn-danger">Back to home</button></a>
+          
+      </tr>
+      <% } %>
+        
+      <%- include('layouts/footer') %> 
