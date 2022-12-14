@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-   
+
 </head>
-<body class="bg-pink-900">
-    <%= user_id %> 
-    <% if(user_id!=0){ %> 
-    <h1>Frontend part will be written here</h1>
-    <a href="/teamsadd/<%- user_id  %> "><button>add your team details</button></a>
-    <a href="/get_team_member_details/<%- user_id %> "><button>view team details</button></a>
-    <% }else{ %> 
-        <a class="bg-slate-500" href="/login"><button>Login To Continue</button></a>
-    <% } %> 
+
+<body class="bg-pink-600">
+    <%= user_id %>
+        <% if(user_id!=0){ %>
+            <h1>Frontend part will be written here</h1>
+            <a href="/teamsadd/<%- user_id  %> "><button>add your team details</button></a>
+            <a href="/get_team_member_details/<%- user_id %> "><button>view team details</button></a>
+            <% }else{ %>
+                <a class="bg-slate-500" href="/login"><button>Login To Continue</button></a>
+                <% } %>
 
 </body>
+
 </html>
