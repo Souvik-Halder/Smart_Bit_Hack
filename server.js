@@ -56,7 +56,7 @@ require('./config/passport')(passport);
 app.use('/', require('./routes/team'));
 app.use('/problem-statements', require('./routes/problemslRouter'));
 app.use('/',require('./routes/user'));
-
+app.use('/',require('./routes/viewprofile'))
 
 
 
