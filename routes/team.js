@@ -137,7 +137,7 @@ router.get("/add_problem_statement/:id", (req, res) => {
 });
 
 //route to get the team members
-router.get("/get_team_intro/:id", (req, res) => {
+router.get("/get_team_intro/:id", auth,(req, res) => {
     const id = req.params.id;
 
     Teams.find({ teamid: id }, (err, teamdetail) => {
@@ -162,7 +162,7 @@ router.get("/get_team_intro/:id", (req, res) => {
 
 //route to get teammember details
 
-router.get('/get_team_member_details/:id', (req, res) => {
+router.get('/get_team_member_details/:id', auth,(req, res) => {
     const id = req.params.id;
     TeamMember.find({ teamId: id }, (err, teammember) => {
 
@@ -219,8 +219,9 @@ router.get("/aboutus", (req, res) => {
 
 
 //Dashboard code is here
-router.get('/dashboard', (req, res) => {
-    res.render('dashboard')
+router.get('/dashboard', auth,(req, res) => {
+    console.log(req.user)
+    res.render('dashboard',{user_id:req.user.id})
 })
 
 module.exports = router;

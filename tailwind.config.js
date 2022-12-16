@@ -5,6 +5,10 @@ module.exports = {
     // defaultLineHeights: true,
     // standardFontWeights: true
   },
+  content:[
+    "./public/styles/*.{css}",
+    "./views/*.ejs"
+  ],
   purge: [],
   theme: {
     extend: {}

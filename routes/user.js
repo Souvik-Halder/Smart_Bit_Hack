@@ -11,12 +11,12 @@ const User = require('../models/User');
 router.get('/login', (req, res) => res.render('login'));
 
 //Register Page
-router.get('/register', guest, (req, res) => {
+router.get('/register', (req, res) => {
     res.render('register');
 })
 
 //Register Handle
-router.post('/register', guest, (req, res) => {
+router.post('/register', (req, res) => {
     const { name, email, password, password2 } = req.body;
     let errors = [];
     //Check required fields
@@ -78,7 +78,7 @@ router.post('/register', guest, (req, res) => {
     }
 })
 
-router.post('/login', guest, (req, res, next) => {
+router.post('/login', (req, res, next) => {
 
     passport.authenticate('local', (err, user, info) => {
         if (err) {
