@@ -99,7 +99,7 @@ router.post('/login', guest, (req, res, next) => {
             const user_id = user.id
             console.log(user_id)
             req.flash({ type: "danger", msg: "Now you can submit your application" })
-            res.render('index', { user_id })
+            res.render('dashboard', { user_id })
         })
     })(req, res, next);
 })

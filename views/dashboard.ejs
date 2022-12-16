@@ -1,6 +1,7 @@
 <%- include('layouts/header') %>
 
     <body>
+    <h1>  Dashboard</h1>  
         <!-- Navigation bar -->
         <div class="h-full w-full">
             <!-- Large Screen  -->
@@ -275,7 +276,7 @@
                             </div>
                             <p class="mb-3 font-normal text-stone-200 ">The Problem Statement are the problems for which teams students make their projects
                             </p>
-                            <a href="/login" class="inline-flex items-center text-white hover:underline hover:text-hovercolor ">
+                            <a href="/get_team_intro/<%= user_id %> " class="inline-flex items-center text-white hover:underline hover:text-hovercolor ">
                             See your team introduction
                             <i class="fa-solid fa-arrow-up-right-from-square mx-2 "></i>
                         </a>
@@ -292,7 +293,7 @@
                             </div>
                             <p class="mb-3 font-normal text-stone-200 ">The Problem Statement are the problems for which teams students make their projects
                             </p>
-                            <a href="/login" class="inline-flex items-center text-white hover:underline hover:text-hovercolor ">
+                            <a href="/get_team_member_details/<%= user_id %> " class="inline-flex items-center text-white hover:underline hover:text-hovercolor ">
                             See your team member details
                             <i class="fa-solid fa-arrow-up-right-from-square mx-2 "></i>
                         </a>
@@ -308,7 +309,7 @@
                             </div>
                             <p class="mb-3 font-normal text-stone-200 ">The Problem Statement are the problems for which teams students make their projects
                             </p>
-                            <a href="/login" class="inline-flex items-center text-white hover:underline hover:text-hovercolor ">
+                            <a href="/get_problem_statement/<%= user_id %> " class="inline-flex items-center text-white hover:underline hover:text-hovercolor ">
                             See all problem statements
                             <i class="fa-solid fa-arrow-up-right-from-square mx-2 "></i>
                         </a>
