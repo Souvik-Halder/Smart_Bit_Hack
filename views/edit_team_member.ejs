@@ -1,0 +1,100 @@
+<%- include('layouts/header') %>
+<div class="header">
+    <h3 class="text-light">Edit User (<%= user.name1 %> )</h3>
+</div>
+<div class="container " style="height: 1000px;">
+ 
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="text-center my-3">Edit Users (<%= user.name1 %>)</h3>
+           <form action="/update_team_member/<%- teamId %>/<%-user._id%> " method="post" id="addd-form" >
+            
+                  <div class="row d-flex justify-content-center align-items-center">
+                    <div class="col-xl-7 ">
+              
+                  
+              
+                      <div class="card" style="border-radius: 15px;">
+                        <div class="card-body">
+              
+                          <div class="row align-items-center pt-4 pb-3">
+                            <div class="col-md-3 ps-5">
+              
+                              <h6 class="mb-0">Full name</h6>
+              
+                            </div>
+                            <div class="col-md-9 pe-5">
+              
+                              <input name="name1" type="text" class="form-control form-control-lg" placeholder="Enter Name" value="<%= user.name1 %> " />
+              
+                            </div>
+                          </div>
+                          <hr class="mx-n3">
+              
+                        
+                          <hr class="mx-3">
+
+                          <hr class="mx-n3">
+              
+                          <div class="row align-items-center py-3">
+                            <div class="col-md-3 ps-5">
+              
+                              <h6 class="mb-0">Email address</h6>
+              
+                            </div>
+                            <div class="col-md-9 pe-5">
+              
+                              <input name="emailid1" type="email" class="form-control form-control-lg" placeholder="Enter Email" value="<%= user.emailid1 %> " />
+              
+                            </div>
+                          </div>
+              
+                          <hr class="mx-3">
+              
+                          <div class="row align-items-center py-3">
+                            <div class="col-md-3 ps-5">
+              
+                              <h6 class="mb-0">Phone</h6>
+              
+                            </div>
+                            <div class="col-md-9 pe-5">
+              
+                                <input name="phone1" type="text" class="form-control form-control-lg" value="<%= user.phone1 %> " placeholder="Enter Phone" />
+              
+                            </div>
+                          </div>
+              
+                          <hr class="mx-n3">
+              
+                          <div class="row align-items-center py-3">
+                            <div class="col-md-3 ps-5">
+              
+                              <h6 class="mb-0">Bramch name</h6>
+              
+                            </div>
+                            <div class="col-md-9 pe-5">
+              
+                              <input name="branch1" type="email" class="form-control form-control-lg" placeholder="Enter Email" value="<%= user.branch1 %> " />
+              
+                            </div>
+                          </div>
+              
+              
+                          <hr class="mx-n3">
+              
+                          <div class="px-5 py-4">
+                            <button name="submit" type="submit" class="btn btn-success btn-lg">Update User</button>
+                          </div>
+              
+                        </div>
+                      </div>
+              
+                    </div>
+                  </div>
+                </form>
+          
+        </div>
+    </div>
+</div>
+
+<%- include('layouts/footer') %> `

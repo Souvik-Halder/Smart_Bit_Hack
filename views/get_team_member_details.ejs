@@ -1,52 +1,291 @@
 <%- include('layouts/header')  %> 
-<div class="container">
-    <div class="row mt-4 mb-4">
-        <div class="col-lg-12">
-            <!-- <div class="alert alert-warning alert-dismissible fade show" role="alert">
-           
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div> -->
-           <div class="table-responsive">
-               <table class="table table-striped">
-                <thead>
-                    <tr class="table-dark">
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Branch</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                 
-                  <% teammemberdetails.forEach((row,index)=>{ %> 
-                    <tr>
-                        <td><%= index+1 %> </td>
-                        <td><%= row.name1 %> </td>
-                        <td><%= row.branch1 %> </td>
-                        <td><%= row.emailid1 %>  </td>
-                        <td><%= row.phone1 %>  </td>
-                        <td><a  class="text-success"><i class="fa-solid fa-pen"></i></a>
-                            <a  class="text-danger "><i class="fa-solid fa-trash-can mx-3"></i></a></td>
-                    </tr>
-                  <% }) %> 
-                </tbody>
-               </table>
-           </div>
-        </div>
-    </div>
-    
+     <!-- Navigation bar -->
+     <div class="h-full w-full mb-10-8">
+        <!-- Large Screen  -->
+        <nav role="navigation" class="bg-background shadow xl:block hidden">
+            <div class="mx-auto container px-6 py-2 xl:py-0">
+                <div class="flex items-center justify-between">
 
+                    <button class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 rounded-md flex w-full sm:w-auto items-center sm:items-stretch justify-end sm:justify-start">
+                    <div class="flex items-center">
+                        <img src="https://www.sih.gov.in/img1/SIH2022-white-logo.png" class="h-12" alt="logo" />
+
+                    </div>
+                </button>
+                    <div class="flex">
+                        <div class="hidden md:mr-3 xl:flex">
+                            <a href="/dashboard" class="focus:text-hovercolor font-semibold border-b-2 border-transparent focus:border-none flex px-5 items-center py-6 text-md leading-5 text-white hover:text-hovercolor focus:outline-none uppercase transform outline-none transition duration-200">
+                            Home
+                        </a>
+                            <a href="javascript: void(0)" class="focus:text-hovercolor font-semibold border-b-2 border-transparent focus:border-none flex px-5 items-center py-6 text-md leading-5 text-white hover:text-hovercolor focus:outline-none uppercase transform transition duration-2000">
+                            Blog
+                        </a>
+                            <a href="javascript: void(0)" class="focus:text-hovercolor font-semibold border-b-2 border-transparent focus:border-none flex px-5 items-center py-6 text-md leading-5 text-white hover:text-hovercolor focus:outline-none uppercase transform transition duration-2000">
+                            Contact
+                        </a>
+                        </div>
+                        <div class="hidden xl:flex items-center">
+                            <div class="ml-6 relative">
+                                <button aria-label="dropdown" class="focus:outline-none border-b-2 border-transparent focus:border-indigo-700 py-3  focus:text-indigo-700 text-gray-600 hover:text-indigo-700 flex items-center relative" onclick="dropdownHandler(this)">
+                                <ul class="p-2 w-40 border-r bg-white absolute rounded right-0 shadow top-0 mt-16 hidden">
+                                    <li
+                                        class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-hovercolor focus:text-hovercolor focus:outline-none">
+                                        <a href="" class="focus:underline focus:text-indigo-700 focus:outline-none flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="20"
+                                                height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fd7e14" fill="none"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" />
+                                                <circle cx="12" cy="7" r="4" />
+                                                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                                            </svg>
+                                            <span class="ml-2 hover:text-hovercolor">My Profile</span>
+                                        </a>
+                                    </li>
+                                    <li
+                                        class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-hovercolor focus:text-hovercolor focus:outline-none">
+                                        <a href="" class="focus:underline focus:text-indigo-700 focus:outline-none flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="20"
+                                                height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fd7e14" fill="none"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" />
+                                                <circle cx="12" cy="7" r="4" />
+                                                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                                            </svg>
+                                            <span class="ml-2 hover:text-hovercolor">My Profile</span>
+                                        </a>
+                                    </li>
+                                    <li
+                                        class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-hovercolor focus:text-hovercolor focus:outline-none">
+                                        <a href="" class="focus:underline focus:text-indigo-700 focus:outline-none flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="20"
+                                                height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fd7e14" fill="none"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" />
+                                                <circle cx="12" cy="7" r="4" />
+                                                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                                            </svg>
+                                            <span class="ml-2 hover:text-hovercolor">My Profile</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div
+                                    class="cursor-pointer flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-white transition duration-150 ease-in-out">
+                                    <img class="rounded-full h-10 w-10 object-cover"
+                                        src="https://tuk-cdn.s3.amazonaws.com/assets/components/horizontal_navigation/hn_2.png" alt="logo" />
+                                </div>
+                                <div class="ml-2 ">
+                                    <i class="fa-solid fa-angle-down text-sm text-white hover:text-hovercolor"></i>
+                                </div>
+                            </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- Large Scrren ends -->
+        <!-- Small Screen -->
+        <nav>
+            <div class="py-4 px-6 w-full flex xl:hidden justify-between items-center bg-background fixed top-0 z-40">
+                <div aria-label="logo" role="img" tabindex="0" class="focus:outline-none">
+                    <img src="https://www.sih.gov.in/img1/SIH2022-white-logo.png" class="h-12" alt="logo" />
+                </div>
+                <div class="flex items-center">
+                    <button id="menu" aria-label="open menu" class="focus:outline-none focus:ring-2 focus:ring-gray-600 rounded-md text-gray-800" onclick="sidebarHandler(true)">
+                    <i class="fa-solid fa-bars text-2xl text-white hover:text-hovercolor transform transition delay-150 ease-in-out"></i>
+                </button>
+                </div>
+            </div>
+            <!--Mobile responsive sidebar-->
+            <div class="absolute w-full h-full transform -translate-x-full z-40 xl:hidden" id="mobile-nav">
+                <div class="bg-gray-800 opacity-50 w-full h-full" onclick="sidebarHandler(false)"></div>
+                <div class="w-64 z-40 fixed overflow-y-aut top-0 bg-white shadow h-full flex-col justify-between xl:hidden pb-4 transition duration-150 ease-in-out">
+                    <div class="px-6 h-full">
+                        <div class="flex flex-col justify-between h-full w-full">
+                            <div>
+                                <div class="mt-6 flex w-full items-center justify-between">
+                                    <div class="flex items-center justify-between w-full">
+                                        <div class="flex items-center">
+                                            <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light-with-button-svg9.svg" alt="logo" />
+                                            <p tabindex="0" class="focus:outline-none text-base md:text-2xl text-gray-800 ml-3"></p>
+                                        </div>
+                                        <button id="cross" aria-label="close menu" class="focus:outline-none focus:ring-2 rounded-md text-gray-800" onclick="sidebarHandler(false)">
+                                        <img class="icon icon-tabler icon-tabler-x"
+                                            src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light-with-button-svg11.svg" alt="cross" />
+                                    </button>
+                                    </div>
+                                </div>
+                                <ul class="f-m-m">
+                                    <li>
+                                        <a class="cursor-pointer">
+                                            <div class="text-gray-800 pt-10">
+                                                <div class="flex items-center">
+                                                    <div class="w-6 h-6 md:w-8 md:h-8 text-indigo-700">
+                                                        <i class="fa-solid fa-home text-sm hover:text-hovercolor text-background"></i>
+                                                    </div>
+                                                    <p tabindex="0" class="focus:outline-none focus:text-background text-background xl:text-base hover:text-hovercolor font-semibold text-base ml-3">
+                                                        Home</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="cursor-pointer">
+                                            <div class="text-gray-800 pt-10">
+                                                <div class="flex items-center">
+                                                    <div class="w-6 h-6 md:w-8 md:h-8 text-indigo-700">
+                                                        <i class="fa-solid fa-file-lines text-sm hover:text-hovercolor text-background"></i>
+                                                    </div>
+                                                    <p tabindex="0" class="focus:outline-none focus:text-background text-background xl:text-base hover:text-hovercolor font-semibold text-base ml-3">
+                                                        Blogs</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="cursor-pointer">
+                                            <div class="text-gray-800 pt-10">
+                                                <div class="flex items-center">
+                                                    <div class="w-6 h-6 md:w-8 md:h-8 text-indigo-700">
+                                                        <i class="fa-solid fa-message text-sm hover:text-hovercolor text-background"></i>
+                                                    </div>
+                                                    <p tabindex="0" class="focus:outline-none focus:text-background text-background xl:text-base hover:text-hovercolor font-semibold text-base ml-3">
+                                                        Contact</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="cursor-pointer">
+                                            <div class="text-gray-800 pt-10">
+                                                <div class="flex items-center">
+                                                    <div class="w-6 h-6 md:w-8 md:h-8 text-indigo-700">
+                                                        <i class="fa-solid fa-message text-sm hover:text-hovercolor text-background"></i>
+                                                    </div>
+                                                    <p tabindex="0" class="focus:outline-none focus:text-background text-background xl:text-base hover:text-hovercolor font-semibold text-base ml-3">
+                                                        OK</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="cursor-pointer">
+                                            <button class=" text-gray-800 pt-8 ">
+                                            <div class="flex items-center bg-background px-4 py-2 rounded-md ">
+                                                <p tabindex="0 "
+                                                    class="focus:outline-none focus:text-indigo-600 text-white xl:text-base md:text-2xl text-base ">
+                                                    Sign Up</p>
+                                            </div>
+                                        </button>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="cursor-pointer ">
+                                            <button class="text-gray-800 pt-8 ">
+                                            <div class="flex items-center bg-background px-[22px] py-2 rounded-md ">
+                                                <p tabindex="0 "
+                                                    class="focus:outline-none focus:text-indigo-600 text-white xl:text-base md:text-2xl text-base ">
+                                                    Loga In</p>
+                                            </div>
+                                        </button>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="w-full pt-4 ">
+                                <div class="border-t border-gray-300 ">
+                                    <div class="w-full flex items-center justify-between pt-1 ">
+                                        <div class="flex items-center ">
+                                            <i class="fa-solid fa-user text-sm hover:text-hovercolor text-background "></i>
+                                            <p tabindex="0 " class="focus:outline-none text-gray-800 text-base leading-4 ml-2 ">Guest</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- Small Screen Ends -->
+    </div>
+    <!-- Naviagtion bar -->
+ 
+    <!-- alert code  -->
+      <% if(message) { %> 
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+            <strong class="font-bold">Holy smokes!</strong>
+            <span class="block sm:inline">Something seriously bad happened.</span>
+            <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+              <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+            </span>
+          </div>
+   <% } %> 
+    <!-- alert code  -->
+   
+
+   <div class="container my-8">
+<div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left text-gray-400">
+        <thead class="text-xs uppercase bg-gray-700 text-gray-400">
+            <tr>
+                <th scope="col" class="py-3 px-6">
+                    ID
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Name
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Branch
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Email
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Phone
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    <span class="">Action</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <% teammemberdetails.forEach((row,index) => { %>
+             
+                <tr class="bg-gray-800 border-gray-700 hover:bg-gray-600">
+                    <th scope="row" class="py-4 px-6 font-medium whitespace-nowrap text-white">
+                       <%= index+1 %> 
+                    </th>
+                    <td class="py-4 px-6">
+                        <%= row.name1 %> 
+                    </td>
+                    <td class="py-4 px-6">
+                        <%= row.branch1 %> 
+                    </td>
+                    <td class="py-4 px-6">
+                       <%= row.emailid1 %> 
+                    </td>
+                    <td class="py-4 px-6">
+                     <%= row.phone1 %> 
+                    </td>
+                    <td class="py-2 px-4 text-right">
+                        <a href="/edit_team_member/<%-id %>/<%-row.id %>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-2">Edit</a>
+                        <a href="/delete_team_member/<%-id %>/<%-row.id %>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-2">Delete</a>
+                    </td>
+                </tr>
+               
+            <% }) %>
+           
+        </tbody>
+    </table>
 </div>
-    
+</div> 
      
     <% if(teammemberdetails.length>0 && teammemberdetails.length<5) { %>
-      
-        <p>hi</p>
-        <button class="btn btn-primary"><a class="text-white no-underline" href="/add_team_member/<%- id  %> ">Add team details</a></button>
-              
-          <% } else if(teammemberdetails.length<0) { %>
+      <div class="flex justify-center items-center my-5">
+        <button class="btn btn-primary "><a class="text-white no-underline" href="/add_team_member/<%- id  %> ">Add team details</a></button>
+    </div> 
+          <% } else if(teammemberdetails.length==0) { %>
           <tr>
               <td class="p-4"><span>No Team found </span></td>
               <button class="btn btn-primary"><a class="text-white no-underline" href="/add_team_member/<%- id  %> ">Add team details</a></button>
@@ -54,8 +293,14 @@
           </tr>
          
           <% }else{ %>
-            <a href="/get_problem_statement/<%- id  %> "><button>Get your problem Statement details</button></a>
-
-           
-            <% } %>     
+            <div class="flex justify-center items-center">
+                <a href="/get_problem_statement/<%- id  %>" class="outline-none">
+                <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                    Get your problem Statement details
+                
+                  </button>
+                  </a>
+        </div>
+            <% } %>  
+             <script src="/js/index.js"></script>   
           <%- include('layouts/footer')  %> 

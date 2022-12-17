@@ -11,7 +11,7 @@ DB_URI="mongodb+srv://SouvikHalder:souvikhalder@cluster0.a3bkc.mongodb.net/colla
 
 
 app.use(express.static('public'));
-app.use(flash());
+
 
 //database connection
 mongoose
@@ -31,10 +31,12 @@ app.use(express.json());
 app.use(
   session({
     secret: 'my secret key',
+  
     saveUninitialized: true,
     resave: false,
   })
 );
+app.use(flash());
 app.use((req, res, next) => {
   (res.locals.message = req.session.message), delete req.session.message;
   next();

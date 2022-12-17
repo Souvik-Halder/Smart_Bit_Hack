@@ -46,12 +46,19 @@ router.post("/teamsadd/:id", auth, async(req, res) => {
         whatsappnumber,
         institution,
     } = req.body;
+
+    if(!teamname || !teamleadername || !phone || !email || !whatsappnumber || !institution){
+        req.flash('message','please provide the correct credentials')
+        req.flash('type','danger')
+        res.redirect(`/get_team_member_details/${id}`)
+    }
+    else{
     try {
         let team = await Teams.findOne({ email: req.body.email });
         if (team) {
             return res
                 .status(400)
-                .json({ success: "True", errors: "Please enter a valid email" });
+                .json({ success: "True", message: "Please enter a valid email" });
         }
         team = await Teams.create({
             teamid: id,
@@ -74,6 +81,7 @@ router.post("/teamsadd/:id", auth, async(req, res) => {
         console.log(error);
         res.json({ error });
     }
+}
 });
 
 //TeamMember information submission
@@ -154,7 +162,8 @@ router.get("/get_team_intro/:id", auth,(req, res) => {
                 return result;
             }
             const teamintro = json2array(teamdetail);
-            res.render('get_team_intro', { teamintro })
+           
+            res.render('get_team_intro', { teamintro , id })
         }
     });
 
@@ -164,6 +173,7 @@ router.get("/get_team_intro/:id", auth,(req, res) => {
 
 router.get('/get_team_member_details/:id', auth,(req, res) => {
     const id = req.params.id;
+
     TeamMember.find({ teamId: id }, (err, teammember) => {
 
         if (err) {
@@ -181,8 +191,9 @@ router.get('/get_team_member_details/:id', auth,(req, res) => {
 
             if (teammemberdetails.length > 0) {
                 const success = "true";
-
-                res.render('get_team_member_details', { teammemberdetails, id })
+                    let message=req.flash('message')[0]
+                    let type=req.flash('type')[0]
+                res.render('get_team_member_details', { teammemberdetails, id , message,type })
             } else {
 
                 res.render('get_team_member_details', { teammemberdetails, id })
@@ -222,6 +233,83 @@ router.get("/aboutus", (req, res) => {
 router.get('/dashboard', auth,(req, res) => {
     console.log(req.user)
     res.render('dashboard',{user_id:req.user.id})
+})
+
+//delete team member
+router.get('/delete_team_member/:id1/:id2',auth,(req,res)=>{
+    let id1=req.params.id1;
+    let id2=req.params.id2
+   console.log(id1)
+   console.log(id2)
+    TeamMember.findByIdAndRemove(id2,(err,result)=>{
+   
+  if(err){
+ 
+      res.json({
+      message:err.message
+      })
+    
+  }
+  else{
+    
+
+      res.redirect(`/get_team_member_details/${id1}`);
+     
+  }
+    })
+  })
+
+
+
+//update team member post route
+
+router.post('/update_team_member/:id1/:id2',auth,(req,res)=>{
+    let id1=req.params.id1;
+    let id2=req.params.id2;
+    console.log("printing request")
+
+    TeamMember.findByIdAndUpdate(id2,{
+        name1:req.body.name1,
+        teamId:id1,
+        emailid1:req.body.emailid1,
+        phone1:req.body.phone1,
+        branch1:req.body.branch1
+    },(err,result)=>{
+        if(err){
+            res.json({err:err})
+        }
+        else{
+            req.session.message={
+                type:'success',
+                message:'Updated user successfully'
+            };
+    
+            res.redirect(`/get_team_member_details/${id1}`);
+        }
+    })
+})
+
+//update team member get route
+router.get('/edit_team_member/:id1/:id2',auth,(req,res)=>{
+    let id1=req.params.id1;
+    let id2=req.params.id2;
+    TeamMember.findById(id2,(err,user)=>{
+        if(err){
+            res.redirect('/');
+        }
+        else{
+            if(user == null){
+                res.redirect('/');
+            }
+            else{
+                res.render('edit_team_member',{
+                    title:"Edit User",
+                    user:user,
+                    teamId:id1,
+                })
+            }
+        }
+    })
 })
 
 module.exports = router;
