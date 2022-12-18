@@ -4,12 +4,16 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
+const admin=require('../middlewares/admin')
 const passport = require('passport');
 const guest = require('../middlewares/guest')
 const User = require('../models/User');
 //Login page
 router.get('/login', (req, res) => res.render('login'));
-
+//Redirect url after login function
+const _getRedirectUrl = (req) => {
+    return req.user.role === 'admin' ? 'hi' : 'dashboard'
+}
 //Register Page
 router.get('/register', (req, res) => {
     res.render('register');
@@ -99,14 +103,26 @@ router.post('/login', (req, res, next) => {
             const user_id = user.id
             console.log(user_id)
             req.flash({ type: "danger", msg: "Now you can submit your application" })
-            res.render('dashboard', { user_id })
+            res.render(_getRedirectUrl(req), { user_id })
         })
     })(req, res, next);
 })
 
+//logout User
+router.post('/logout', function(req, res, next) {
+    req.logout(function(err) {
+      if (err) { return next(err); }
+      res.redirect('/');
+    });
+  });
 
 router.get('/tailwind', guest, (req, res) => {
     res.render('tailwind');
+})
+
+//Admin render page route
+router.get('/admin',admin,(req,res)=>{
+    res.render('hi')
 })
 
 module.exports = router;

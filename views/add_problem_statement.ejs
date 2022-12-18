@@ -1,7 +1,81 @@
-<form action="/add_problem_statement/<%= id %> " method="post" enctype="multipart/form-data">
-    <input type="text" name="idea" placeholder="Enter your idea here">
-    <textarea name="ideadesc" id="" cols="30" rows="10" placeholder="Enter your idea description here"></textarea>
-    <input type="file" name="file1" id="">
-    
-    <input type="submit" value="Submit" name="submit">
-</form>
+<%- include('layouts/header') %>
+
+<div class="container " style="height: 1000px;">
+    <div class="row">
+        <div class="col-lg-12">
+           <form action="/add_problem_statement/<%-id %> " method="post" id="addd-form" >
+            
+                  <div class="row d-flex justify-content-center align-items-center">
+                    <div class="col-xl-7 ">
+              
+                  
+              
+                      <div class="card" style="border-radius: 15px;">
+                        <div class="card-body">
+              
+                              <div class="card-body">
+              
+                               
+                                <div class="row align-items-center pt-4 pb-3">
+                                  <div class="col-md-3 ps-5">
+                    
+                                    <h6 class="mb-0">Idea desc</h6>
+                    
+                                  </div>
+                                  <div class="col-md-9 pe-5">
+                    
+                                    <input name="ideadesc" type="text" class="form-control form-control-lg" placeholder="" />
+                    
+                                  </div>
+                                </div>
+                                <hr class="mx-n3">
+              
+                          <div class="row align-items-center py-3">
+                            <div class="col-md-3 ps-5">
+              
+                              <h6 class="mb-0">Idea brief</h6>
+              
+                            </div>
+                            <div class="col-md-9 pe-5">
+              
+                              <input name="idea" type="text" class="form-control form-control-lg" placeholder="Enter Email" />
+              
+                            </div>
+                          </div>
+              
+                          <hr class="mx-3">
+                          <div class="row align-items-center py-3">
+                            <div class="col-md-3 ps-5">
+              
+                                <h6 class="mb-0">Psid</h6>
+                
+                              </div>
+                            <div class="col-md-9 pe-5">
+              
+                              <input name="psid" type="text" class="form-control form-control-lg" placeholder="Enter Email" />
+              
+                            </div>
+                          </div>
+                          <hr class="mx-n3">
+                     
+              
+            
+              
+                          <hr class="mx-n3">
+              
+                          <div class="px-5 py-4">
+                          <a href="/get_problem_statement/<%-id %> ">  <button name="submit" type="submit" class="btn btn-primary btn-lg">Submit team details</button></a>
+                          </div>
+              
+                        </div>
+                      </div>
+              
+                    </div>
+                  </div>
+                </form>
+          
+        </div>
+    </div>
+</div>
+
+<%- include('layouts/footer') %> 

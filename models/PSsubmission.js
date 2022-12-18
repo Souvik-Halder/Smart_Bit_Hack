@@ -8,6 +8,10 @@ const PSSubmissionsSchema=new Schema({
         ref: 'user',
         required: true
         },
+    psid:{
+        type:String,
+        require:true
+    },
     idea:{
         type:String,
         require:true
@@ -16,14 +20,7 @@ const PSSubmissionsSchema=new Schema({
         type:String,
         require:true
     },
-    file1:{
-        type:String,
-        require:true,
-    },
-    file2:{
-        type:String,
-        require:true,
-    }
+   
 });
 
 module.exports=mongoose.model('pssubmit',PSSubmissionsSchema)

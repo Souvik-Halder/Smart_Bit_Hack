@@ -4,8 +4,12 @@ const multer = require("multer");
 const Teams = require("../models/Teams");
 var jwt = require("jsonwebtoken");
 const auth = require("../middlewares/auth");
-
+const checkteamleaderlimit=require('../middlewares/checkteamleaderlimit');
+const fetchteamlead=require('../middlewares/fetchteamlead');
+const fetchteammmember=require('../middlewares/fetchteammember');
 const TeamMember = require("../models/TeamMember");
+const checkpslimit =require('../middlewares/checkpslimit')
+const checkteammemberlimit=require('../middlewares/checkteammemberlimit')
 
 const PSsubmission = require("../models/PSsubmission");
 const JWT_SECRET = "Souvikisagoodboy";
@@ -30,12 +34,12 @@ router.get("/", (req, res) => {
     res.render("index", { user_id });
 });
 //problem statement submission
-router.get("/teamsadd/:id", auth, (req, res) => {
+router.get("/teamsadd/:id", auth, checkteamleaderlimit,(req, res) => {
     const user_id = req.params.id;
     res.render("TeamLeader", { user_id });
 });
 
-router.post("/teamsadd/:id", auth, async(req, res) => {
+router.post("/teamsadd/:id", auth,checkteamleaderlimit, async(req, res) => {
     const id = req.params.id;
 
     const {
@@ -86,17 +90,24 @@ router.post("/teamsadd/:id", auth, async(req, res) => {
 
 //TeamMember information submission
 
-router.post("/add_team_member/:id", async(req, res) => {
+router.post("/add_team_member/:id", auth,fetchteamlead,checkteammemberlimit,async(req, res) => {
     const id = req.params.id;
     try {
         const { name1, branch1, emailid1, phone1 } = req.body;
-
+        if(!name1 || !branch1 || !phone1 || !emailid1 ){
+            req.flash('message','please provide the correct credentials')
+            req.flash('type','danger')
+            res.redirect(`/get_team_member_details/${id}`)
+        }
+        else{
         let teammember = await TeamMember.findOne({ emailid1 });
         if (teammember) {
             success = false;
-            res.json({ success, msg: "please enter a valid email" });
+            req.flash('message','This Emails is already used . Please provide different email');
+            req.flash('type','danger');
+            res.redirect(`/get_team_member_details/${id}`)
         }
-
+   else{
         teammember = new TeamMember({
             name1,
             branch1,
@@ -105,33 +116,45 @@ router.post("/add_team_member/:id", async(req, res) => {
             teamId: id,
         });
         const savedteammember = await teammember.save();
+    
         res.redirect(`/get_team_member_details/${id}`);
+    }
+}
     } catch (error) {
         console.log(error.message);
-        res.status(500).send("Internal Server Error Occured");
+       req.flash('message',error.message);
+       req.flash('type','danger');
+       res.redirect(`/get_team_member_details/${id}`);
     }
+
 });
 
-router.get("/add_team_member/:id", (req, res) => {
+router.get("/add_team_member/:id",fetchteamlead,checkteammemberlimit, auth,(req, res) => {
     const id = req.params.id;
     res.render("add_team_member", { id });
 });
 
-router.post("/add_problem_statement/:id", upload, async(req, res) => {
+router.post("/add_problem_statement/:id",auth,fetchteamlead,fetchteammmember,checkpslimit,async(req, res) => {
     const id = req.params.id;
-    console.log(req.file);
+  
     try {
-        const { idea, ideadesc } = req.body;
-
+        console.log(req.body)
+        const { idea, ideadesc ,psid } = req.body;
+  if(!idea || !ideadesc || !psid){
+    req.flash('message','Please fill the all fields');
+    req.flash('type','danger')
+    res.redirect(`/get_problem_statement/${id}`)
+  }
+  else{
         const pssubmitone = new PSsubmission({
             idea,
             ideadesc,
-            file1: req.file.filename,
-            file2: req.file.filename,
+            psid,
             teamId: id,
         });
         const savedpssubmitone = await pssubmitone.save();
         res.redirect(`/get_problem_statement/${id}`);
+    }
     } catch (error) {
         console.log(error);
         res.json({ msg: "Invalid response was sent" });
@@ -139,13 +162,13 @@ router.post("/add_problem_statement/:id", upload, async(req, res) => {
 });
 
 //problem statement submit route
-router.get("/add_problem_statement/:id", (req, res) => {
+router.get("/add_problem_statement/:id", fetchteamlead,fetchteammmember,checkpslimit,auth,(req, res) => {
     const id = req.params.id;
     res.render("add_problem_statement", { id });
 });
 
 //route to get the team members
-router.get("/get_team_intro/:id", auth,(req, res) => {
+router.get("/get_team_intro/:id",auth,(req, res) => {
     const id = req.params.id;
 
     Teams.find({ teamid: id }, (err, teamdetail) => {
@@ -171,7 +194,7 @@ router.get("/get_team_intro/:id", auth,(req, res) => {
 
 //route to get teammember details
 
-router.get('/get_team_member_details/:id', auth,(req, res) => {
+router.get('/get_team_member_details/:id', fetchteamlead,auth,(req, res) => {
     const id = req.params.id;
 
     TeamMember.find({ teamId: id }, (err, teammember) => {
@@ -207,7 +230,7 @@ router.get('/get_team_member_details/:id', auth,(req, res) => {
 
 
 //route to get the problem statements
-router.get("/get_problem_statement/:id", (req, res) => {
+router.get("/get_problem_statement/:id", auth,fetchteamlead,fetchteammmember,(req, res) => {
     const id = req.params.id;
 
     PSsubmission.find({ teamId: id }, (err, problemstatements) => {
