@@ -4,7 +4,16 @@ const ProblemStatement = require('../models/ProblemStatements');
 const getProblems = async (req, res) => {
   try {
     const statements = await ProblemStatement.find();
-    res.json({ statements });
+    function json2array(json) {
+      var result = [];
+      var keys = Object.keys(json);
+      keys.forEach(function(key) {
+          result.push(json[key]);
+      });
+      return result;
+  }
+  const statementsarr = json2array(statements);
+  res.render('All_Problem_Statements',{statementsarr})
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

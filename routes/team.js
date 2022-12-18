@@ -335,4 +335,56 @@ router.get('/edit_team_member/:id1/:id2',auth,(req,res)=>{
     })
 })
 
+router.post('/update_team_lead/:id1/:id2',auth,(req,res)=>{
+    let id1=req.params.id1;
+    let id2=req.params.id2;
+    console.log("printing request")
+
+    Teams.findByIdAndUpdate(id2,{
+        teamname:req.body.teamname,
+        teamid:id1,
+        teamleadername:req.body.teamleadername,
+        email:req.body.email,
+        phone:req.body.phone,
+        whatsapp:req.body.whatsappnumber,
+        institution:req.body.institution
+    },(err,result)=>{
+        if(err){
+            res.json({err:err})
+        }
+        else{
+            req.session.message={
+                type:'success',
+                message:'Updated user successfully'
+            };
+    
+            res.redirect(`/get_team_intro/${id1}`);
+        }
+    })
+})
+
+//update team member get route
+router.get('/edit_team_lead/:id1/:id2',auth,(req,res)=>{
+    let id1=req.params.id1;
+    let id2=req.params.id2;
+    Teams.findById(id2,(err,user)=>{
+        if(err){
+            res.redirect('/');
+        }
+        else{
+            if(user == null){
+                res.redirect('/');
+            }
+            else{
+             
+                res.render('edit_team_leader',{
+                    title:"Edit User",
+                    user:user,
+                    teamid:id1,
+                })
+            }
+        }
+    })
+})
+
 module.exports = router;
