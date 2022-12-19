@@ -1,4 +1,14 @@
 <%- include('layouts/header') %>
+<!-- alert code  -->
+<% if(message) { %> 
+  <div class="alert alert-<%= type %>  alert-dismissible fade show" role="alert">
+      <strong>Holy guacamole!</strong> <%= message %> 
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+<% } %> 
+<!-- alert code  -->
 
 <div class="container " style="height: 1000px;">
     <div class="row">

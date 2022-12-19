@@ -238,7 +238,16 @@
 <body class="font-sans antialiased text-gray-900 leading-normal tracking-wider bg-cover" style="background-image:url('https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80');">
 
 
-
+<!-- alert code  -->
+<% if(message) { %> 
+    <div class="alert alert-<%= type %>  alert-dismissible fade show" role="alert">
+        <strong>Holy guacamole!</strong> <%= message %> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+<% } %> 
+<!-- alert code  -->
    
 
 
@@ -287,6 +296,8 @@
                     </a>
                     </div>
                 </div>
+              
+                <label for=""></label>
                 <p class="text-sm">Need help,feel free to
                     <a href="#" class="font-bold underline hover:text-green-700">contact us</a>
                     </a> or just use the below links

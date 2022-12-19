@@ -4,18 +4,23 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
+
 const admin=require('../middlewares/admin')
 const Teams=require('../models/Teams')
 const TeamMember=require('../models/TeamMember')
 const passport = require('passport');
 const guest = require('../middlewares/guest')
 const User = require('../models/User');
+const PSsubmission = require('../models/PSsubmission');
 //Login page
-router.get('/login', (req, res) => res.render('login'));
+router.get('/login', (req, res) => {
+    let errors=[]
+    res.render('login',{errors});
+});
 //Redirect url after login function
 const _getRedirectUrl = (req) => {
     if(req.user!=null){
-    return req.user.role === 'admin' ? 'admin_handler' : 'dashboard'
+    return req.user.role === 'admin' ? '/admin' : 'dashboard'
     }
     else{
         return 'index'
@@ -23,7 +28,8 @@ const _getRedirectUrl = (req) => {
 }
 //Register Page
 router.get('/register', (req, res) => {
-    res.render('register');
+   const errors=[]
+    res.render('register',{errors});
 })
 
 //Register Handle
@@ -32,7 +38,8 @@ router.post('/register', (req, res) => {
     let errors = [];
     //Check required fields
     if (!name || !email || !password || !password2) {
-        errors.push({ msg: 'Please d fill in all fields' });
+        errors.push({ msg: 'Please fill all the fields Properly' });
+        
     }
 
     //check password match
@@ -56,7 +63,7 @@ router.post('/register', (req, res) => {
         User.findOne({ email: email })
             .then(user => {
                 if (user) {
-                    errors.push({ msg: 'Email is already register' })
+                    errors.push({ msg: 'Email is already register please try to login' })
                     res.render('register', {
                         errors,
                         name,
@@ -78,8 +85,9 @@ router.post('/register', (req, res) => {
                         //Save user
                         newUSer.save()
                             .then(user => {
-                                req.flash('success_msg', 'You are now registered and can log in')
-                                console.log('sucess')
+                                req.flash('message', 'You are now registered and can log in');
+                                req.flash('type','danger')
+                               
                                 res.redirect('/login');
                             })
                             .catch(err => console.log(err));
@@ -90,35 +98,41 @@ router.post('/register', (req, res) => {
 })
 
 router.post('/login', (req, res, next) => {
-
+    let errors = [];
     passport.authenticate('local', (err, user, info) => {
         if (err) {
-            req.flash('error', info.message)
-            next(err)
+           errors.push({msg:'Please provide the correct credentials'})
+           
+            res.render('login',{errors});
         }
         if (!user) {
-            req.flash('error', info.message)
-            res.redirect('/login')
+            errors.push({msg:'Please provide the correct credentials'})
+            res.render('login',{errors})
         }
         req.logIn(user, (err) => {
             if (err) {
-                req.flash('error', info.message)
-                next(err)
+                errors.push({msg:'Please provide the correct credentials'})
+               res.render('login',{errors})
             }
-
+         else{
             console.log(user.id)
             const user_id = user.id
             console.log(user_id)
-            req.flash({ type: "danger", msg: "Now you can submit your application" })
-            res.render(_getRedirectUrl(req), { user_id })
+            req.flash('message','Logged In Successfully');
+          
+            req.flash('type','success')
+            res.redirect(_getRedirectUrl(req))
+         }
         })
     })(req, res, next);
 })
 
-//logout User
+// User Logout Route
 router.post('/logout', function(req, res, next) {
     req.logout(function(err) {
       if (err) { return next(err); }
+      req.flash('message','Logged Out Successfully')
+      req.flash('type','success')
       res.redirect('/');
     });
   });
@@ -129,6 +143,10 @@ router.get('/tailwind', guest, (req, res) => {
 
 //Admin Team Leader Details page 
 router.get('/admin',admin,async(req,res)=>{
+   res.render('admin_handler')
+})
+
+router.get('/admin_team_handler',admin,async(req,res)=>{
     let TeamDetails=await Teams.find();
     function json2array(json) {
         var result = [];
@@ -176,4 +194,35 @@ router.get('/admin_team_member/:id',admin,async(req,res)=>{
     });
 })
 
+//Admin Team Problem Statement Detials Page
+router.get('/admin_prolem_statement/:id',admin,(req,res)=>{
+    const id=req.params.id;
+    PSsubmission.find({ teamId: id }, (err, pssubmissiondetails) => {
+
+        if (err) {
+            res.json({ err });
+        } else {
+            function json2array(json) {
+                var result = [];
+                var keys = Object.keys(json);
+                keys.forEach(function(key) {
+                    result.push(json[key]);
+                });
+                return result;
+            }
+            const pssubmissiondetailsarr = json2array(pssubmissiondetails);
+
+            if (pssubmissiondetailsarr.length > 0) {
+                const success = "true";
+               
+                res.render('adimin_problem_statement_handler', { pssubmissiondetailsarr, id  })
+            } else {
+
+                res.render('adimin_problem_statement_handler', { pssubmissiondetailsarr, id })
+            }
+
+        }
+
+    });
+})
 module.exports = router;

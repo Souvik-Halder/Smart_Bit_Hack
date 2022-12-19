@@ -218,6 +218,16 @@
             <!-- Small Screen Ends -->
         </div>
         <!-- Naviagtion bar -->
+        <!-- alert code  -->
+ <% if(message) { %> 
+    <div class="alert alert-<%= type %>  alert-dismissible fade show" role="alert">
+        <strong>Holy guacamole!</strong> <%= message %> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+<% } %> 
+<!-- alert code  -->
         <!-- Carousel -->
         <!-- <div class="carousel relative shadow-2xl bg-white ">
     <div class="carousel-inner relative overflow-hidden ">

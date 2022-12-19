@@ -26,7 +26,7 @@ if(pssubmit!=null){
     }
 }
   } catch (error) {
-    console.log(error)
+    
    return res.redirect(`/get_problem_statement/${id}`)
   }
 

@@ -14,7 +14,7 @@ const checkteammemberlimit=require('../middlewares/checkteammemberlimit')
 const PSsubmission = require("../models/PSsubmission");
 const JWT_SECRET = "Souvikisagoodboy";
 
-//upload image
+//upload image Setup by using multer
 var storage = multer.diskStorage({
     destination: function(req, file, cb) {
         cb(null, "./uploads"); //we need to create the directory
@@ -23,7 +23,7 @@ var storage = multer.diskStorage({
         cb(null, file.originalname);
     },
 });
-
+//middleware setup by multer
 var upload = multer({
     storage: storage,
 }).single("file1");
@@ -31,12 +31,16 @@ var upload = multer({
 //routes
 router.get("/", (req, res) => {
     user_id = [0];
-    res.render("index", { user_id });
+    let message=req.flash('message')[0]
+    let type=req.flash('type')[0]
+    res.render("index", { user_id,message,type });
 });
 //problem statement submission
 router.get("/teamsadd/:id", auth, checkteamleaderlimit,(req, res) => {
     const user_id = req.params.id;
-    res.render("TeamLeader", { user_id });
+    let message=req.flash('message')[0]
+    let type=req.flash('type')[0]
+    res.render("TeamLeader", { user_id ,message,type });
 });
 
 router.post("/teamsadd/:id", auth,checkteamleaderlimit, async(req, res) => {
@@ -52,18 +56,19 @@ router.post("/teamsadd/:id", auth,checkteamleaderlimit, async(req, res) => {
     } = req.body;
 
     if(!teamname || !teamleadername || !phone || !email || !whatsappnumber || !institution){
-        req.flash('message','please provide the correct credentials')
-        req.flash('type','danger')
-        res.redirect(`/get_team_member_details/${id}`)
+        req.flash('message','Please Fill All the Fields');
+        req.flash('type','danger');
+        res.redirect(`/teamsadd/${id}`)
     }
     else{
     try {
         let team = await Teams.findOne({ email: req.body.email });
         if (team) {
-            return res
-                .status(400)
-                .json({ success: "True", message: "Please enter a valid email" });
+            req.flash('message','This Email ID already submitted the team details');
+            req.flash('type','danger');
+            res.redirect(`/teamsadd/${id}`)
         }
+        else{
         team = await Teams.create({
             teamid: id,
             teamname,
@@ -79,11 +84,14 @@ router.post("/teamsadd/:id", auth,checkteamleaderlimit, async(req, res) => {
                 id: team.teamid,
             },
         };
-        res.redirect(`/get_team_member/${team.teamid}`);
+        req.flash('message','Team Leader Details Saved Successfully');
+        req.flash('type','success');
+        res.redirect(`/get_team_intro/${team.teamid}`);
+    }
     } catch (error) {
-        console.log("error.messagehghjghj");
-        console.log(error);
-        res.json({ error });
+        req.flash('message','Please provide the correct credent');
+        req.flash('type','danger');
+        res.redirect(`/teamsadd/${team.teamid}`);
     }
 }
 });
@@ -95,7 +103,7 @@ router.post("/add_team_member/:id", auth,fetchteamlead,checkteammemberlimit,asyn
     try {
         const { name1, branch1, emailid1, phone1 } = req.body;
         if(!name1 || !branch1 || !phone1 || !emailid1 ){
-            req.flash('message','please provide the correct credentials')
+            req.flash('message','Please fill up the all fields')
             req.flash('type','danger')
             res.redirect(`/get_team_member_details/${id}`)
         }
@@ -121,7 +129,7 @@ router.post("/add_team_member/:id", auth,fetchteamlead,checkteammemberlimit,asyn
     }
 }
     } catch (error) {
-        console.log(error.message);
+       
        req.flash('message',error.message);
        req.flash('type','danger');
        res.redirect(`/get_team_member_details/${id}`);
@@ -134,6 +142,8 @@ router.get("/add_team_member/:id",fetchteamlead,checkteammemberlimit, auth,(req,
     res.render("add_team_member", { id });
 });
 
+//Problem Statement submit post route
+
 router.post("/add_problem_statement/:id",auth,fetchteamlead,fetchteammmember,checkpslimit,async(req, res) => {
     const id = req.params.id;
   
@@ -143,7 +153,7 @@ router.post("/add_problem_statement/:id",auth,fetchteamlead,fetchteammmember,che
   if(!idea || !ideadesc || !psid){
     req.flash('message','Please fill the all fields');
     req.flash('type','danger')
-    res.redirect(`/get_problem_statement/${id}`)
+    res.redirect(`/add_problem_statement/${id}`)
   }
   else{
         const pssubmitone = new PSsubmission({
@@ -153,18 +163,24 @@ router.post("/add_problem_statement/:id",auth,fetchteamlead,fetchteammmember,che
             teamId: id,
         });
         const savedpssubmitone = await pssubmitone.save();
+        req.flash('message','Your Problem Statement Submitted Successfully')
+        req.flash('type','success')
         res.redirect(`/get_problem_statement/${id}`);
     }
     } catch (error) {
-        console.log(error);
-        res.json({ msg: "Invalid response was sent" });
+        req.flash('message','Please Provide Correct Credentials')
+        req.flash('type','danger')
+        res.redirect(`/get_problem_statement/${id}`);
     }
 });
 
 //problem statement submit route
 router.get("/add_problem_statement/:id", fetchteamlead,fetchteammmember,checkpslimit,auth,(req, res) => {
     const id = req.params.id;
-    res.render("add_problem_statement", { id });
+    let message=req.flash('message')[0]
+                    let type=req.flash('type')[0]
+
+    res.render("add_problem_statement", { id ,message,type });
 });
 
 //route to get the team members
@@ -185,8 +201,10 @@ router.get("/get_team_intro/:id",auth,(req, res) => {
                 return result;
             }
             const teamintro = json2array(teamdetail);
-           
-            res.render('get_team_intro', { teamintro , id })
+            const message=req.flash('message')[0]
+            
+            const type=req.flash('type')[0]
+            res.render('get_team_intro', { teamintro , id,message,type })
         }
     });
 
@@ -213,12 +231,12 @@ router.get('/get_team_member_details/:id', fetchteamlead,auth,(req, res) => {
             const teammemberdetails = json2array(teammember);
 
             if (teammemberdetails.length > 0) {
-                const success = "true";
+                const success = "true";  
                     let message=req.flash('message')[0]
                     let type=req.flash('type')[0]
                 res.render('get_team_member_details', { teammemberdetails, id , message,type })
-            } else {
-
+            } else { 
+                      
                 res.render('get_team_member_details', { teammemberdetails, id })
             }
 
@@ -241,12 +259,16 @@ router.get("/get_problem_statement/:id", auth,fetchteamlead,fetchteammmember,(re
                 res.render('get_problem_statement', { problemstatements, id })
             } else {
                 const success = "true";
-                res.render('get_problem_statement', { problemstatements, id })
+                let message=req.flash('message')[0]
+                    let type=req.flash('type')[0]
+
+                res.render('get_problem_statement', { problemstatements, id ,message,type })
             }
         }
     });
 });
 
+//About Us Route
 router.get("/aboutus", (req, res) => {
     res.render("aboutus");
 });
@@ -254,16 +276,17 @@ router.get("/aboutus", (req, res) => {
 
 //Dashboard code is here
 router.get('/dashboard', auth,(req, res) => {
-    console.log(req.user)
-    res.render('dashboard',{user_id:req.user.id})
+    const message=req.flash('message')[0]
+  
+    const type=req.flash('type')[0]
+    res.render('dashboard',{user_id:req.user.id,message,type})
 })
 
-//delete team member
+//Delete team member
 router.get('/delete_team_member/:id1/:id2',auth,(req,res)=>{
     let id1=req.params.id1;
     let id2=req.params.id2
-   console.log(id1)
-   console.log(id2)
+
     TeamMember.findByIdAndRemove(id2,(err,result)=>{
    
   if(err){
@@ -283,13 +306,12 @@ router.get('/delete_team_member/:id1/:id2',auth,(req,res)=>{
   })
 
 
-
 //update team member post route
 
 router.post('/update_team_member/:id1/:id2',auth,(req,res)=>{
     let id1=req.params.id1;
     let id2=req.params.id2;
-    console.log("printing request")
+  
 
     TeamMember.findByIdAndUpdate(id2,{
         name1:req.body.name1,
@@ -334,11 +356,11 @@ router.get('/edit_team_member/:id1/:id2',auth,(req,res)=>{
         }
     })
 })
-//update team leader details post routet
+//update team leader details post route
 router.post('/update_team_lead/:id1/:id2',auth,(req,res)=>{
     let id1=req.params.id1;
     let id2=req.params.id2;
-    console.log("printing request")
+  
 
     Teams.findByIdAndUpdate(id2,{
         teamname:req.body.teamname,
@@ -387,11 +409,12 @@ router.get('/edit_team_lead/:id1/:id2',auth,(req,res)=>{
     })
 })
 
+//update Problem Statement Deltails  get route
 
 router.post('/update_submitted_ps/:id1/:id2',auth,(req,res)=>{
     let id1=req.params.id1;
     let id2=req.params.id2;
-    console.log("printing request")
+   
 
     PSsubmission.findByIdAndUpdate(id2,{
         
@@ -415,7 +438,7 @@ router.post('/update_submitted_ps/:id1/:id2',auth,(req,res)=>{
     })
 })
 
-//update team leader details get route
+//update Problem Statement Deltails  get route
 router.get('/edit_submitted_ps/:id1/:id2',auth,(req,res)=>{
     let id1=req.params.id1;
     let id2=req.params.id2;
