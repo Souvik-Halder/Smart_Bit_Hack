@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const Teams = require("../models/Teams");
-var jwt = require("jsonwebtoken");
+
 const auth = require("../middlewares/auth");
 const checkteamleaderlimit=require('../middlewares/checkteamleaderlimit');
 const fetchteamlead=require('../middlewares/fetchteamlead');
@@ -334,7 +334,7 @@ router.get('/edit_team_member/:id1/:id2',auth,(req,res)=>{
         }
     })
 })
-
+//update team leader details post routet
 router.post('/update_team_lead/:id1/:id2',auth,(req,res)=>{
     let id1=req.params.id1;
     let id2=req.params.id2;
@@ -363,7 +363,7 @@ router.post('/update_team_lead/:id1/:id2',auth,(req,res)=>{
     })
 })
 
-//update team member get route
+//update team leader details get route
 router.get('/edit_team_lead/:id1/:id2',auth,(req,res)=>{
     let id1=req.params.id1;
     let id2=req.params.id2;
@@ -386,5 +386,58 @@ router.get('/edit_team_lead/:id1/:id2',auth,(req,res)=>{
         }
     })
 })
+
+
+router.post('/update_submitted_ps/:id1/:id2',auth,(req,res)=>{
+    let id1=req.params.id1;
+    let id2=req.params.id2;
+    console.log("printing request")
+
+    PSsubmission.findByIdAndUpdate(id2,{
+        
+        teamId:id1,
+        psid:req.body.psid,
+        idea:req.body.idea,
+        ideadesc:req.body.ideadesc,
+        
+    },(err,result)=>{
+        if(err){
+            res.json({err:err})
+        }
+        else{
+            req.session.message={
+                type:'success',
+                message:'Updated  successfully'
+            };
+    
+            res.redirect(`/get_problem_statement/${id1}`);
+        }
+    })
+})
+
+//update team leader details get route
+router.get('/edit_submitted_ps/:id1/:id2',auth,(req,res)=>{
+    let id1=req.params.id1;
+    let id2=req.params.id2;
+    PSsubmission.findById(id2,(err,user)=>{
+        if(err){
+            res.redirect('/');
+        }
+        else{
+            if(user == null){
+                res.redirect('/');
+            }
+            else{
+             
+                res.render('edit_problem_statement',{
+                    title:"Edit User",
+                    user:user,
+                    teamId:id1,
+                })
+            }
+        }
+    })
+})
+
 
 module.exports = router;

@@ -5,6 +5,8 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const admin=require('../middlewares/admin')
+const Teams=require('../models/Teams')
+const TeamMember=require('../models/TeamMember')
 const passport = require('passport');
 const guest = require('../middlewares/guest')
 const User = require('../models/User');
@@ -12,7 +14,7 @@ const User = require('../models/User');
 router.get('/login', (req, res) => res.render('login'));
 //Redirect url after login function
 const _getRedirectUrl = (req) => {
-    return req.user.role === 'admin' ? 'hi' : 'dashboard'
+    return req.user.role === 'admin' ? 'admin_handler' : 'dashboard'
 }
 //Register Page
 router.get('/register', (req, res) => {
@@ -120,9 +122,53 @@ router.get('/tailwind', guest, (req, res) => {
     res.render('tailwind');
 })
 
-//Admin render page route
-router.get('/admin',admin,(req,res)=>{
-    res.render('hi')
+//Admin Team Leader Details page 
+router.get('/admin',admin,async(req,res)=>{
+    let TeamDetails=await Teams.find();
+    function json2array(json) {
+        var result = [];
+        var keys = Object.keys(json);
+        keys.forEach(function(key) {
+            result.push(json[key]);
+        });
+        return result;
+    }
+    const TeamDetailsarr = json2array(TeamDetails);
+ 
+    res.render('admin_handler_team',{TeamDetailsarr})
+})
+
+//Admin Team member Details Page
+router.get('/admin_team_member/:id',admin,async(req,res)=>{
+    const id=req.params.id;
+    TeamMember.find({ teamId: id }, (err, teammember) => {
+
+        if (err) {
+            res.json({ err });
+        } else {
+            function json2array(json) {
+                var result = [];
+                var keys = Object.keys(json);
+                keys.forEach(function(key) {
+                    result.push(json[key]);
+                });
+                return result;
+            }
+            const teammemberdetails = json2array(teammember);
+
+            if (teammemberdetails.length > 0) {
+                const success = "true";
+                    let message=req.flash('message')[0]
+                    let type=req.flash('type')[0]
+                res.render('admin_team_member_handler', { teammemberdetails, id , message,type })
+            } else {
+
+                res.render('admin_team_member_handler', { teammemberdetails, id })
+            }
+
+        }
+
+    });
 })
 
 module.exports = router;

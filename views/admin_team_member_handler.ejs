@@ -1,0 +1,62 @@
+<%- include('layouts/header')  %> 
+   
+   
+
+   <div class="container my-8">
+<div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left text-gray-400">
+        <thead class="text-xs uppercase bg-gray-700 text-gray-400">
+            <tr>
+                <th scope="col" class="py-3 px-6">
+                    ID
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Name
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Email ID
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Branch Name
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Phone
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    <span class="">Action</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <% teammemberdetails.forEach((row,index) => { %>
+             
+                <tr class="bg-gray-800 border-gray-700 hover:bg-gray-600">
+                    <th scope="row" class="py-4 px-6 font-medium whitespace-nowrap text-white">
+                       <%= index+1 %> 
+                    </th>
+                    <td class="py-4 px-6">
+                        <%= row.name1 %> 
+                    </td>
+                    <td class="py-4 px-6">
+                        <%= row.emailid1 %> 
+                    </td>
+                    <td class="py-4 px-6">
+                       <%= row.branch1 %> 
+                    </td>
+                    <td class="py-4 px-6">
+                     <%= row.phone1 %> 
+                    </td>
+                    <td class="py-2 px-4 text-right">
+                        <a href="/edit_team_member/<%-id %>/<%-row.id %>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-2">Edit</a>
+                        <a href="/delete_team_member/<%-id %>/<%-row.id %>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-2">Delete</a>
+                    </td>
+                </tr>
+               
+            <% }) %>
+           
+        </tbody>
+    </table>
+</div>
+</div> 
+     
+     <%- include('layouts/footer')  %> 
