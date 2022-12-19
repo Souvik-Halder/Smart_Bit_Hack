@@ -14,7 +14,12 @@ const User = require('../models/User');
 router.get('/login', (req, res) => res.render('login'));
 //Redirect url after login function
 const _getRedirectUrl = (req) => {
+    if(req.user!=null){
     return req.user.role === 'admin' ? 'admin_handler' : 'dashboard'
+    }
+    else{
+        return 'index'
+    }
 }
 //Register Page
 router.get('/register', (req, res) => {
