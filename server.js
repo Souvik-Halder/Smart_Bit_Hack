@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const flash=require('connect-flash');
 
-DB_URI="mongodb+srv://SouvikHalder:souvikhalder@cluster0.a3bkc.mongodb.net/collagehackathon?retryWrites=true&w=majority";
+DB_URI="mongodb+srv://SouvikHalder:souvikhalder@cluster0.a3bkc.mongodb.net/collagehackathonwebsite?retryWrites=true&w=majority";
 
 
 app.use(express.static('public'));

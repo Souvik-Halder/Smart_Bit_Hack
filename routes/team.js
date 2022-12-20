@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const Teams = require("../models/Teams");
-
+const admin=require('../middlewares/admin')
 const auth = require("../middlewares/auth");
 const checkteamleaderlimit=require('../middlewares/checkteamleaderlimit');
 const fetchteamlead=require('../middlewares/fetchteamlead');
@@ -10,7 +10,7 @@ const fetchteammmember=require('../middlewares/fetchteammember');
 const TeamMember = require("../models/TeamMember");
 const checkpslimit =require('../middlewares/checkpslimit')
 const checkteammemberlimit=require('../middlewares/checkteammemberlimit')
-
+const nodemailer=require('nodemailer');
 const PSsubmission = require("../models/PSsubmission");
 const JWT_SECRET = "Souvikisagoodboy";
 
@@ -27,6 +27,17 @@ var storage = multer.diskStorage({
 var upload = multer({
     storage: storage,
 }).single("file1");
+
+
+//Node Mailer Setup
+const transporter=nodemailer.createTransport({
+    service: "outlook",
+    auth:{
+        user:'souvikasuslaptop@outlook.com',
+        pass:"souvik@laptop"
+    }
+});
+
 
 //routes
 router.get("/", (req, res) => {
@@ -462,5 +473,23 @@ router.get('/edit_submitted_ps/:id1/:id2',auth,(req,res)=>{
     })
 })
 
+
+
+router.post('/select_option',admin,(req,res)=>{
+    const email=req.body.email
+   transporter.sendMail({
+       from:"souvikasuslaptop@outlook.com",
+       to:email,
+       subject:"Selection Of Hackathon",
+       text:"Congratulations! Your team has been selected in this hackathon 🥳🥳"
+   },(err,info)=>{
+       if(err){
+           console.log(err)
+       }
+       console.log("Send successfully"+info.response) 
+       res.redirect('/')
+   })
+   
+   })
 
 module.exports = router;

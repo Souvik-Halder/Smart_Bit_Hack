@@ -2,18 +2,19 @@
 
  
    
-   
+   <!-- Search bar code -->
+ 
 
-   <div class="container my-8">
-    <select name="" id=""  onchange="showme(this.value)">
-        <option value="">Select</option>
-        <option value="Testing">AA</option>
-        
-        <option value="Blockchain">BB</option>
-    </select>
-   
-<div class="overflow-x-auto relative shadow-md sm:rounded-lg">
-    <table class="w-full text-sm text-left text-gray-400">
+   <!-- Search bar code -->
+   <div class="flex justify-center my-5">
+    <div class="mb-3 xl:w-96">
+      <div class="input-group relative flex flex-wrap items-stretch w-full mb-4">
+        <input type="search" id="myInput" onkeyup="showme()" class="form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Search" aria-label="Search" aria-describedby="button-addon3">
+        <button class="btn inline-block px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out" type="button" id="button-addon3">Search</button>
+      </div>
+    </div>
+  </div>
+    <table class="w-full text-sm text-left text-gray-400" id="myTable">
         <div id="heading">
         <thead class="text-xs uppercase bg-gray-700 text-gray-400 " >
             <tr  >
@@ -64,7 +65,9 @@
                         <a href="/problem-statements/<%-row._id %>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-2">Expand</a>
                        
                         <a href="/problem-statements/delete/<%-row._id %>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-2">Delete</a>
-                    </form>
+
+                    
+                 
                     </td>
                 </tr>
                
@@ -75,7 +78,7 @@
     </table>
 </div>
 </div> 
-<div class="flex justify-center items-center">
+<div class="flex justify-center my-5 items-center">
     <a href="/problem-statements/add" class="outline-none">
     <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
 
@@ -85,34 +88,23 @@
       </a>
 </div>
 <script>
-    function showme(value){
-        if(value=="Testing"){
-            let element1=document.getElementsByClassName('Testing');
-            Array.from(element1).forEach((element)=>{
-               
-                element.style.display='block';
-            })
-            let element2=document.getElementsByClassName('Blockchain');
-            Array.from(element2).forEach((element)=>{
-               
-                element.style.display='none !important';
-            })
-            document.getElementById('heading').style.display='block'
+    function showme(){
+        let filter=document.getElementById('myInput').value.toUpperCase();
+        let myTable=document.getElementById('myTable');
+        let tr=myTable.getElementsByTagName('tr');
+        for(let i=0;i<tr.length;i++){
+            let td=tr[i].getElementsByTagName('td')[2];
+            if(td){
+                let textvalue=td.textContent || td.innerHTML;
+                if(textvalue.toUpperCase().indexOf(filter)>-1){
+                    tr[i].style.display='';
+                }
+                else{
+                    tr[i].style.display="none"
+                }
+            }
         }
-        if(value=="Blockchain"){
-            let element1=document.getElementsByClassName('Testing');
-            Array.from(element1).forEach((element)=>{
-                console.log(element);
-                element.style.display='none !important';
-            })
-           
-            let element2=document.getElementsByClassName('Blockchain');
-            Array.from(element2).forEach((element)=>{
-               
-                element.style.display='block';
-            })
-        }
-    }
+       }
   </script>
          </body>
         </html>

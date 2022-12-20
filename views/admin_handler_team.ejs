@@ -64,6 +64,10 @@
                        </td>
                     <td class="py-2 px-4 text-right">
                         <a href="/admin_team_member/<%-row.teamid %>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-2">Expand</a>
+                        <form action="/select_option" method="post">
+                            <input style="display:none;" type="email" name="email" value="<%= row.email %>">
+                        <button type="submit" class="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-2">Select</button>
+                    </form>
                    </td>
                 </tr>
                
