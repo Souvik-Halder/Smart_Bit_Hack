@@ -21,7 +21,7 @@ const getProblems = async (req, res) => {
 
 // GET form to add new problem
 const getNewProblemForm = (req, res) => {
-  res.render('addProblemForm', { title: 'Add New Problem' });
+  res.render('addProblemForm_admin');
 };
 
 // GET one problem statement
@@ -39,10 +39,10 @@ const addProblem = async (req, res) => {
 
   try {
     const newProblem = await problem.save();
-    res.status(201).json(newProblem);
+    res.redirect('/admin_all_ps_handler')
   } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
+    res.redirect('/admin_all_ps_handler') 
+   }
 };
 
 // UPDATE one problem statement
@@ -63,11 +63,9 @@ const deleteProblem = async (req, res) => {
   try {
     const problemId = res.problem._id;
     await res.problem.remove();
-    res.json({
-      message: `Delete success for problem statement with id ${problemId}`,
-    });
+    res.redirect('/admin_all_ps_handler')
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.redirect('/admin_all_ps_handler')
   }
 };
 

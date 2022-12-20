@@ -4,7 +4,7 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
-
+const ProblemStatement=require('../models/ProblemStatements')
 const admin=require('../middlewares/admin')
 const Teams=require('../models/Teams')
 const TeamMember=require('../models/TeamMember')
@@ -193,6 +193,28 @@ router.get('/admin_team_member/:id',admin,async(req,res)=>{
 
     });
 })
+
+router.get('/admin_all_ps_handler',admin,async(req,res)=>{
+    try {
+      const statements = await ProblemStatement.find();
+    
+      function json2array(json) {
+        var result = [];
+        var keys = Object.keys(json);
+        keys.forEach(function(key) {
+            result.push(json[key]);
+        });
+        return result;
+    }
+    const statementsarr = json2array(statements);
+    
+    res.render('All_Problem_Statements_admin_handler',{statementsarr})
+    } catch (error) {
+        console.log(error)
+     res.redirect('/')
+    }
+  })
+  
 
 //Admin Team Problem Statement Detials Page
 router.get('/admin_prolem_statement/:id',admin,(req,res)=>{

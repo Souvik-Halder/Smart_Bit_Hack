@@ -1,0 +1,83 @@
+<%- include('layouts/header') %>
+
+<div class="container my-6" style="height: 1000px;">
+ 
+    <div class="row">
+        <div class="col-lg-12">
+           <form action="/problem-statements/add" method="post" id="addd-form" >
+            
+                  <div class="row d-flex justify-content-center align-items-center">
+                    <div class="col-xl-7 ">
+              
+                  
+              
+                      <div class="card" style="border-radius: 15px;">
+                        <div class="card-body">
+              
+                              <div class="card-body">
+              
+                               
+                                <div class="row align-items-center pt-4 pb-3">
+                                  <div class="col-md-3 ps-5">
+                    
+                                    <h6 class="mb-0">Title</h6>
+                    
+                                  </div>
+                                  <div class="col-md-9 pe-5">
+                    
+                                    <input name="title" type="text" class="form-control form-control-lg" placeholder="" />
+                    
+                                  </div>
+                                </div>
+                                <hr class="mx-n3">
+              
+                          <div class="row align-items-center py-3">
+                            <div class="col-md-3 ps-5">
+              
+                              <h6 class="mb-0">Problem Statement Description</h6>
+              
+                            </div>
+                            <div class="col-md-9 pe-5">
+              
+                              <input name="description" type="text" class="form-control form-control-lg" placeholder="Enter Email" />
+              
+                            </div>
+                          </div>
+              
+                          <hr class="mx-3">
+                          <div class="row align-items-center py-3">
+                            <div class="col-md-3 ps-5">
+              
+                                <h6 class="mb-0">Problem Statement Domain</h6>
+                
+                              </div>
+                            <div class="col-md-9 pe-5">
+              
+                              <input name="theme" type="text" class="form-control form-control-lg" placeholder="Enter Email" />
+              
+                            </div>
+                          </div>
+                          <hr class="mx-n3">
+                     
+              
+            
+              
+                          <hr class="mx-n3">
+              
+                          <div class="px-5 py-4">
+                          <a href="/admin_all_ps_handler">  <button name="submit" type="submit" class="btn btn-primary btn-lg">Submit Problem Statement details</button></a>
+                          </div>
+              
+                        </div>
+                      </div>
+              
+                    </div>
+                  </div>
+                </form>
+          
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

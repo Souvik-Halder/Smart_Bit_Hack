@@ -1,0 +1,118 @@
+<%- include('layouts/header')  %> 
+
+ 
+   
+   
+
+   <div class="container my-8">
+    <select name="" id=""  onchange="showme(this.value)">
+        <option value="">Select</option>
+        <option value="Testing">AA</option>
+        
+        <option value="Blockchain">BB</option>
+    </select>
+   
+<div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left text-gray-400">
+        <div id="heading">
+        <thead class="text-xs uppercase bg-gray-700 text-gray-400 " >
+            <tr  >
+                <th scope="col" class="py-3 px-6">
+                    ID
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Title
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Description
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Theme
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Category
+                </th>
+              
+                <th scope="col" class="py-3 px-6">
+                    <span class="">Action</span>
+                </th>
+            </tr>
+        </thead>
+    </div>
+    <% statementsarr.forEach((row,index) => { %>
+          
+        <tbody >
+           
+             
+                <tr class="bg-gray-800 border-gray-700 hover:bg-gray-600">
+                    <th scope="row" class="py-4 px-6 font-medium whitespace-nowrap text-white">
+                       <%= index+1 %> 
+                    </th>
+                    <td class="py-4 px-6">
+                        <%= row.title %> 
+                    </td>
+                    <td class="py-4 px-6">
+                        <%= row.description %> 
+                    </td>
+                    <td class="py-4 px-6">
+                       <%= row.theme %> 
+                    </td>
+                    <td class="py-4 px-6">
+                     <%= row.category %> 
+                    </td>
+                    <td class="py-2 px-4 text-right">
+                        <a href="/problem-statements/<%-row._id %>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-2">Expand</a>
+                       
+                        <a href="/problem-statements/delete/<%-row._id %>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-2">Delete</a>
+                    </form>
+                    </td>
+                </tr>
+               
+            <% }) %>
+           
+        </tbody>
+   
+    </table>
+</div>
+</div> 
+<div class="flex justify-center items-center">
+    <a href="/problem-statements/add" class="outline-none">
+    <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+
+    Add Problem Statements
+    
+      </button>
+      </a>
+</div>
+<script>
+    function showme(value){
+        if(value=="Testing"){
+            let element1=document.getElementsByClassName('Testing');
+            Array.from(element1).forEach((element)=>{
+               
+                element.style.display='block';
+            })
+            let element2=document.getElementsByClassName('Blockchain');
+            Array.from(element2).forEach((element)=>{
+               
+                element.style.display='none !important';
+            })
+            document.getElementById('heading').style.display='block'
+        }
+        if(value=="Blockchain"){
+            let element1=document.getElementsByClassName('Testing');
+            Array.from(element1).forEach((element)=>{
+                console.log(element);
+                element.style.display='none !important';
+            })
+           
+            let element2=document.getElementsByClassName('Blockchain');
+            Array.from(element2).forEach((element)=>{
+               
+                element.style.display='block';
+            })
+        }
+    }
+  </script>
+         </body>
+        </html>
