@@ -33,7 +33,7 @@ router.get("/", (req, res) => {
     user_id = [0];
     let message=req.flash('message')[0]
     let type=req.flash('type')[0]
-    res.render("index", { user_id,message,type });
+    res.render("index_1", { user_id,message,type });
 });
 //problem statement submission
 router.get("/teamsadd/:id", auth, checkteamleaderlimit,(req, res) => {

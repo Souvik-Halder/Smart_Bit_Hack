@@ -23,7 +23,7 @@ const _getRedirectUrl = (req) => {
     return req.user.role === 'admin' ? '/admin' : 'dashboard'
     }
     else{
-        return 'index'
+        return '/'
     }
 }
 //Register Page
