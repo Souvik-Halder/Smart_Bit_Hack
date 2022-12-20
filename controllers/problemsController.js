@@ -15,7 +15,7 @@ const getProblems = async (req, res) => {
   const statementsarr = json2array(statements);
   res.render('All_Problem_Statements',{statementsarr})
   } catch (error) {
-    res.status(500).json({ message: error.message });
+   res.redirect('/')
   }
 };
 
