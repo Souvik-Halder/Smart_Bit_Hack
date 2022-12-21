@@ -154,9 +154,14 @@
     </div> 
          
         <% if(teammemberdetails.length>0 && teammemberdetails.length<5) { %>
-          <div class="flex justify-center items-center my-5">
-            <button class="btn btn-primary "><a class="text-white no-underline" href="/add_team_member/<%- id  %> ">Add team details</a></button>
-        </div> 
+          <div class="flex justify-center items-center">
+            <a href="/add_team_member/<%- id  %>" class="outline-none">
+            <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                Add Team Member Details
+            
+              </button>
+              </a>
+    </div>
               <% } else if(teammemberdetails.length==0) { %>
            
              
