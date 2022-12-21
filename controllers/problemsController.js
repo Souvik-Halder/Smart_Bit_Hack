@@ -26,7 +26,30 @@ const getNewProblemForm = (req, res) => {
 
 // GET one problem statement
 const getOneProblem = async (req, res) => {
-  res.json(res.problem);
+  function json2array(json) {
+    var result = [];
+    var keys = Object.keys(json);
+    keys.forEach(function(key) {
+        result.push(json[key]);
+    });
+    return result;
+}
+const problemstatements = [json2array(res.problem)[2]];
+
+  res.render('expand_ps',{problemstatements})
+};
+const getOneProblemDashboard = async (req, res) => {
+  function json2array(json) {
+    var result = [];
+    var keys = Object.keys(json);
+    keys.forEach(function(key) {
+        result.push(json[key]);
+    });
+    return result;
+}
+const problemstatements = [json2array(res.problem)[2]];
+
+  res.render('expand_ps_dashboard',{problemstatements})
 };
 
 // POST one problem statement
@@ -72,6 +95,7 @@ const deleteProblem = async (req, res) => {
 module.exports = {
   getProblems,
   getNewProblemForm,
+  getOneProblemDashboard,
   getOneProblem,
   addProblem,
   updateProblem,

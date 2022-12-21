@@ -12,7 +12,7 @@
       <div class="-mx-4 flex flex-wrap items-center">
         <div class="w-full px-4">
           <div class="text-center">
-            <h1 class="text-4xl font-semibold text-white"> Submitted Problem Statement Details</h1>
+            <h1 class="text-4xl font-semibold text-white"> Problem Statement Details</h1>
           </div>
         </div>
       </div>
@@ -84,24 +84,14 @@
     </div>
   </div>
   <!-- ====== Banner Section End -->
-      <!-- alert code  -->
-      <%= message %> 
-<% if(message) { %> 
-    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-        <strong class="font-bold"><%= message %> </strong>
-        <span class="block sm:inline">Something seriously bad happened.</span>
-        <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
-          <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
-        </span>
-      </div>
-<% } %> 
-<!-- alert code  -->
+
   <!-- ====== 404 Section Start -->
   <section class="bg-white py-14 lg:py-20">
     <div class="container">
+        
     
         <% if(problemstatements.length>0 ) { %>
-            <% problemstatements.forEach(row => { %>
+            <% problemstatements.forEach((row) => { %>
     
         <div class="max-w-4xl flex items-center justify-center h-auto lg:h-screen flex-wrap mx-auto my-32 lg:my-20">
     
@@ -114,33 +104,37 @@
                     <h1 class="text-3xl font-bold pt-8 lg:pt-0">Your Submitted Problem Statement  </h1>
                     <div class="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 border-green-500 opacity-25"></div>
                     <div class="flex-row items-center justify-center ">
-                    <p class="pt-4 text-2xl font-bold  lg:justify-start">Problem Statement ID</p>
-                    <span class=" text-xl"><%= row.psid %> </span>
+                 
                 </div>
                 <div class="flex-col items-center justify-center lg:justify-start">
-                    <p class="pt-5 text-black  md:text-md font-bold text-2xl "> Problem Statement Idea
+                    <p class="pt-5 text-black  md:text-md font-bold text-2xl "> Problem Statement Title
                         
                     </p>
-                    <span class=" text-gray-600 text-xl "> <%= row.idea %> </span>
+                    <span class=" text-gray-600 text-xl "> <%= row.title %> </span>
                 </div>
                 <div class="flex-col items-center justify-center lg:justify-start"> 
                     <p class="pt-6 text-black text-2xl md:text-md font-bold "> Problem Statement Description
                         
                     </p>
-                    <span class="text-gray-600 text-xl"><%= row.ideadesc %> </span>
+                    <span class="text-gray-600 text-xl"><%= row.description %> </span>
                 </div>
-                   
+                <div class="flex-col items-center justify-center lg:justify-start"> 
+                    <p class="pt-6 text-black text-2xl md:text-md font-bold "> Problem Statement Theme
+                        
+                    </p>
+                    <span class="text-gray-600 text-xl"><%= row.theme %> </span>
+                </div>
+                <div class="flex-col items-center justify-center lg:justify-start"> 
+                    <p class="pt-6 text-black text-2xl md:text-md font-bold "> Problem Statement Category
+                        
+                    </p>
+                    <span class="text-gray-600 text-xl"><%= row.category %> </span>
+                </div>
                     <p class="my-2 text-md">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, quasi veniam sequi corrupti rerum tempora, nostrum quo officia velit repellendus deleniti accusantium. Eligendi velit earum, impedit maiores quasi sed vero!</p>
                     <div class="flex justify-center ">
-                        <div class="py-4 pr-5">
-                            <a href="/edit_submitted_ps/<%- id %>/<%- row._id %> ">
-                            <button class="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-xl">
-                                Edit Your Info
-                            </button>
-                        </a>
-                        </div>
+                      
                         <div class="py-4">
-                            <a href="/dashboard">
+                            <a href="/">
                             <button class="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-xl">
                                Back To Home
                             </button>
@@ -187,16 +181,6 @@
             <% }) %>
           
             <% } %> 
-            <% if (problemstatements.length==0) { %>
-                <div class="flex justify-center items-center">
-                    <a href="/add_problem_statement/<%- id  %>" class="outline-none">
-                    <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
-                      Submit problem Statement details
-                    
-                      </button>
-                      </a>
-            </div>
-            <% } %>
     </div>
   </section>
   <!-- ====== 404 Section End -->

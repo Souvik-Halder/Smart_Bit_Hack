@@ -21,7 +21,7 @@
       <div class="-mx-4 flex flex-wrap items-center">
         <div class="w-full px-4">
           <div class="text-center">
-            <h1 class="text-4xl font-semibold text-white">Team Member Details</h1>
+            <h1 class="text-4xl font-semibold text-white">Team Leader Details</h1>
           </div>
         </div>
       </div>
@@ -182,6 +182,16 @@
             <% }) %>
           
             <% } %> 
+            <% if (teamintro.length==0) { %>
+                <div class="flex justify-center items-center">
+                    <a href="/teamsadd/<%- id  %>" class="outline-none">
+                    <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                      Add Team Leader Details
+                    
+                      </button>
+                      </a>
+            </div>
+            <% } %>
     </div>
   </section>
   <!-- ====== 404 Section End -->

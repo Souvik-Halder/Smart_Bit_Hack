@@ -19,7 +19,9 @@ const fetchteammember = async (req, res, next) => {
     if (TeammemberDetails === null){
       return res.redirect(`/get_team_member_details/${id}`);
     }
-   
+    else if(TeammemberDetailsarray.length==0){
+      return res.redirect(`/get_team_member_details/${id}`)
+    }
     else if(TeammemberDetailsarray.length>0 && TeammemberDetailsarray.length<5){
       
         return res.redirect(`/get_team_member_details/${id}`)

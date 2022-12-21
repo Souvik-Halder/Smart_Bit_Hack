@@ -282,7 +282,7 @@ router.get("/get_problem_statement/:id", auth,fetchteamlead,fetchteammmember,(re
 
 //About Us Route
 router.get("/aboutus", (req, res) => {
-    res.render("test");
+    res.render("aboutus");
 });
 
 
