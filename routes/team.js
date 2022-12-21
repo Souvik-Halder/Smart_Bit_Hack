@@ -102,7 +102,7 @@ router.post("/teamsadd/:id", auth,checkteamleaderlimit, async(req, res) => {
     } catch (error) {
         req.flash('message','Please provide the correct credent');
         req.flash('type','danger');
-        res.redirect(`/teamsadd/${team.teamid}`);
+        res.redirect(`/get_team_intro/${id}`);
     }
 }
 });
@@ -135,7 +135,8 @@ router.post("/add_team_member/:id", auth,fetchteamlead,checkteammemberlimit,asyn
             teamId: id,
         });
         const savedteammember = await teammember.save();
-    
+        req.flash('message','Team Member Saved Successfully');
+        req.flash('type','danger')
         res.redirect(`/get_team_member_details/${id}`);
     }
 }
@@ -290,7 +291,7 @@ router.get('/dashboard', auth,(req, res) => {
     const message=req.flash('message')[0]
   
     const type=req.flash('type')[0]
-    res.render('dashboard',{user_id:req.user.id,message,type})
+    res.render('dashboard_1',{user_id:req.user.id,message,type})
 })
 
 //Delete team member

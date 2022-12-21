@@ -20,7 +20,7 @@ router.get('/login', (req, res) => {
 //Redirect url after login function
 const _getRedirectUrl = (req) => {
     if(req.user!=null){
-    return req.user.role === 'admin' ? '/admin' : 'dashboard'
+    return req.user.role === 'admin' ? '/admin' : '/dashboard'
     }
     else{
         return '/'
