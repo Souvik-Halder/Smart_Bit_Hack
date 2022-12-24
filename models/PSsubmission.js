@@ -20,6 +20,10 @@ const PSSubmissionsSchema=new Schema({
         type:String,
         require:true
     },
+    file:{
+        type:String,
+        require:true
+    }
    
 });
 

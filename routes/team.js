@@ -3,6 +3,7 @@ const router = express.Router();
 const multer = require("multer");
 const Teams = require("../models/Teams");
 const admin=require('../middlewares/admin')
+const fs=require('fs')
 const auth = require("../middlewares/auth");
 const checkteamleaderlimit=require('../middlewares/checkteamleaderlimit');
 const fetchteamlead=require('../middlewares/fetchteamlead');
@@ -25,8 +26,9 @@ var storage = multer.diskStorage({
 });
 //middleware setup by multer
 var upload = multer({
+    
     storage: storage,
-}).single("file1");
+}).single("pdffile");
 
 
 //Node Mailer Setup
@@ -156,13 +158,19 @@ router.get("/add_team_member/:id",fetchteamlead,checkteammemberlimit, auth,(req,
 
 //Problem Statement submit post route
 
-router.post("/add_problem_statement/:id",auth,fetchteamlead,fetchteammmember,checkpslimit,async(req, res) => {
+router.post("/add_problem_statement/:id",auth,fetchteamlead,fetchteammmember,checkpslimit,upload,async(req, res) => {
     const id = req.params.id;
-  
+   
     try {
-        console.log(req.body)
+      
         const { idea, ideadesc ,psid } = req.body;
-  if(!idea || !ideadesc || !psid){
+    let file =await PSsubmission.findOne({file:req.file.filename});
+    if(file){
+        req.flash('message','Please Change the file name and submit the file with different file name');
+        req.flash('type','danger')
+        res.redirect(`/add_problem_statement/${id}`)
+    }
+     else  if(!idea || !ideadesc || !psid || !(req.file.filename)){
     req.flash('message','Please fill the all fields');
     req.flash('type','danger')
     res.redirect(`/add_problem_statement/${id}`)
@@ -173,6 +181,7 @@ router.post("/add_problem_statement/:id",auth,fetchteamlead,fetchteammmember,che
             ideadesc,
             psid,
             teamId: id,
+            file:req.file.filename,
         });
         const savedpssubmitone = await pssubmitone.save();
         req.flash('message','Your Problem Statement Submitted Successfully')
@@ -180,6 +189,7 @@ router.post("/add_problem_statement/:id",auth,fetchteamlead,fetchteammmember,che
         res.redirect(`/get_problem_statement/${id}`);
     }
     } catch (error) {
+        console.log(error)
         req.flash('message','Please Provide Correct Credentials')
         req.flash('type','danger')
         res.redirect(`/get_problem_statement/${id}`);
@@ -492,5 +502,16 @@ router.post('/select_option',admin,(req,res)=>{
    })
    
    })
+
+//Download pdf
+router.get('/download/:id',admin,async(req,res)=>{
+    const id=req.params.id;
+    let submittedps=await PSsubmission.find({teamId:id});
+    if(submittedps){
+        
+        res.download('./uploads/'+submittedps[0].file)
+    }
+    
+})
 
 module.exports = router;

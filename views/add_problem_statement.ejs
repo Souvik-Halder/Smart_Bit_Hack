@@ -13,7 +13,7 @@
 <!-- alert code  -->
     <div class="row">
         <div class="col-lg-12">
-           <form action="/add_problem_statement/<%-id %> " method="post" id="addd-form" >
+           <form action="/add_problem_statement/<%-id %> " method="post" id="addd-form" enctype="multipart/form-data" >
             
                   <div class="row d-flex justify-content-center align-items-center">
                     <div class="col-xl-7 ">
@@ -29,12 +29,12 @@
                                 <div class="row align-items-center pt-4 pb-3">
                                   <div class="col-md-3 ps-5">
                     
-                                    <h6 class="mb-0">Idea desc</h6>
+                                    <h6 class="mb-0">Idea Description</h6>
                     
                                   </div>
                                   <div class="col-md-9 pe-5">
                     
-                                    <input name="ideadesc" type="text" class="form-control form-control-lg" placeholder="" />
+                                    <input name="ideadesc" type="text" class="form-control form-control-lg" placeholder="Enter Your Idea Description" />
                     
                                   </div>
                                 </div>
@@ -43,12 +43,12 @@
                           <div class="row align-items-center py-3">
                             <div class="col-md-3 ps-5">
               
-                              <h6 class="mb-0">Idea brief</h6>
+                              <h6 class="mb-0">Idea Brief</h6>
               
                             </div>
                             <div class="col-md-9 pe-5">
               
-                              <input name="idea" type="text" class="form-control form-control-lg" placeholder="Enter Email" />
+                              <input name="idea" type="text" class="form-control form-control-lg" placeholder="Enter Your Idea in Brief" />
               
                             </div>
                           </div>
@@ -62,16 +62,29 @@
                               </div>
                             <div class="col-md-9 pe-5">
               
-                              <input name="psid" type="text" class="form-control form-control-lg" placeholder="Enter Email" />
+                              <input name="psid" type="text" class="form-control form-control-lg" placeholder="Enter ID from the table" />
               
                             </div>
                           </div>
+                          <hr class="mx-n3">
+                          <div class="row align-items-center py-3">
+                            <div class="col-md-3 ps-5">
+              
+                                <h6 class="mb-0">Upload File</h6>
+                
+                              </div>
+                            <div class="col-md-9 pe-5">
+              
+                               
+                            <input class="form-control" type="file" id="formFile" name="pdffile">
+                            </div>
+                          </div>
+                       
                           <hr class="mx-n3">
                      
               
             
               
-                          <hr class="mx-n3">
               
                           <div class="px-5 py-4">
                           <a href="/get_problem_statement/<%-id %> ">  <button name="submit" type="submit" class="btn btn-primary btn-lg">Submit Problem Statement details</button></a>

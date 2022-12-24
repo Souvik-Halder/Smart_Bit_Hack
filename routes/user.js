@@ -236,11 +236,11 @@ router.get('/admin_prolem_statement/:id',admin,(req,res)=>{
 
             if (pssubmissiondetailsarr.length > 0) {
                 const success = "true";
-               
-                res.render('adimin_problem_statement_handler', { pssubmissiondetailsarr, id  })
+                const path="./uploads/"+pssubmissiondetailsarr.file;
+                res.render('adimin_problem_statement_handler', { pssubmissiondetailsarr, id,path  })
             } else {
-
-                res.render('adimin_problem_statement_handler', { pssubmissiondetailsarr, id })
+                const path="./uploads"+pssubmissiondetailsarr.file;
+                res.render('adimin_problem_statement_handler', { pssubmissiondetailsarr, id,path })
             }
 
         }

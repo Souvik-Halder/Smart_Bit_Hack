@@ -59,23 +59,22 @@
                 </p>
                 <span class="text-gray-600 text-xl"><%= row.ideadesc %> </span>
             </div>
-               
+            <div class="flex-col items-center justify-center lg:justify-start"> 
+                <p class="pt-6 text-black text-2xl md:text-md font-bold "> Problem Statement Description
+                    
+                </p>
+                <span class="text-gray-600 text-xl"><%= row.file %> </span>
+            </div>
                 <p class="my-2 text-md">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, quasi veniam sequi corrupti rerum tempora, nostrum quo officia velit repellendus deleniti accusantium. Eligendi velit earum, impedit maiores quasi sed vero!</p>
                 <div class="flex justify-center ">
                     <div class="py-4 pr-5">
-                        <a href="/edit_submitted_ps/<%- id %>/<%- row._id %> ">
+                        <a href="/download/<%= row.teamId %> ">
                         <button class="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-xl">
-                            Edit Your Info
+                            Download The PDF
                         </button>
                     </a>
                     </div>
-                    <div class="py-4">
-                        <a href="/admin">
-                        <button class="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-xl">
-                           Back To Home
-                        </button>
-                    </a>
-                    </div>
+                   
                 </div>
                 <p class="text-sm">Need help,feel free to
                     <a href="#" class="font-bold underline hover:text-green-700">contact us</a>

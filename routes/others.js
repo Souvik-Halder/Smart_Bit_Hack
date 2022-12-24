@@ -1,5 +1,6 @@
 const express=require('express');
 const router=express();
+const admin=require('../middlewares/admin')
 const auth=require('../middlewares/auth')
 const ProblemStatement=require('../models/ProblemStatements')
 const {
@@ -8,6 +9,7 @@ const {
     
   } = require('../controllers/problemsController');
   const getProblem = require('../middlewares/fetchProblem');
+
 //About Us Dashboard
 router.get('/about_us_dashboard',auth,(req,res)=>{
     const id=req.user._id;
@@ -22,6 +24,8 @@ router.get('/contact_us_dashboard',auth,(req,res)=>{
     const id=req.user._id;
     res.render('contact_us_dashboard',{id})
 })
+
+
 
 router.get('/expand_ps_dashboard/:id', auth,getProblem, getOneProblemDashboard);
 
