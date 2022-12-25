@@ -514,4 +514,9 @@ router.get('/download/:id',admin,async(req,res)=>{
     
 })
 
+router.get('/download_sample_pdf',auth,async(req,res)=>{
+    res.download('./uploads/Sample.pptx');
+})
+
+
 module.exports = router;
