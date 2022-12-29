@@ -433,18 +433,34 @@ router.get('/edit_team_lead/:id1/:id2',auth,(req,res)=>{
 
 //update Problem Statement Deltails  get route
 
-router.post('/update_submitted_ps/:id1/:id2',auth,(req,res)=>{
+router.post('/update_submitted_ps/:id1/:id2',auth,upload,(req,res)=>{
     let id1=req.params.id1;
     let id2=req.params.id2;
    
-
+    let new_file="";
+    if(req.file){
+        
+        new_file=req.file.filename;
+      
+        try{
+            fs.unlinkSync('./uploads/'+req.body.old_file);
+           
+        }catch(err){
+           
+            console.log(err);
+        }
+    }else{
+        new_file=req.body.old_file;
+    }
+    console.log(new_file)
+  
     PSsubmission.findByIdAndUpdate(id2,{
         
         teamId:id1,
         psid:req.body.psid,
         idea:req.body.idea,
         ideadesc:req.body.ideadesc,
-        
+        file:new_file
     },(err,result)=>{
         if(err){
             res.json({err:err})
@@ -461,7 +477,7 @@ router.post('/update_submitted_ps/:id1/:id2',auth,(req,res)=>{
 })
 
 //update Problem Statement Deltails  get route
-router.get('/edit_submitted_ps/:id1/:id2',auth,(req,res)=>{
+router.get('/edit_submitted_ps/:id1/:id2',auth,upload,(req,res)=>{
     let id1=req.params.id1;
     let id2=req.params.id2;
     PSsubmission.findById(id2,(err,user)=>{
