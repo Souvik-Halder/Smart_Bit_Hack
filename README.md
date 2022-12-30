@@ -1,4 +1,4 @@
-# Collage-Hackathon-Website
+# College-Hackathon-Website
 
 
 run npm install to install all the dependencies in your local computer
