@@ -26,7 +26,6 @@ var storage = multer.diskStorage({
 });
 //middleware setup by multer
 var upload = multer({
-    
     storage: storage,
 }).single("pdffile");
 
